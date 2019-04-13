@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Testing pleiotropy in multiparental populations</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Frederick Boehm" />
+    <meta name="date" content="2019-04-11" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Testing pleiotropy in multiparental populations
+### Frederick Boehm
+### April 11, 2019
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Introduction
+
+- 10,000+ traits with RNA sequencing and mass spectrometry 
+
+- Multiparental populations offer high-resolution QTL mapping
+
+- New analysis tools, such as a pleiotropy test for multiparental populations, are needed 
+
+
+???
+
+- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
+
+---
+
+# Jiang and Zeng  (1995)  test
+
+- Two-parent crosses    
+
+- Applies to two traits that co-map     
+
+- `\(H_0\)`: Pleiotropy    
+
+- `\(H_A\)`: Two separate QTL    
+
+
+
+---
+
+# Jiang and Zeng  (1995)  test
+
+
+- Perform a two-dimensional two-QTL scan     
+
+- `\(vec(Y) = Xvec(B) + vec(E)\)`     
+
+- Calculate likelihood ratio test statistic     
+
+???
+
+- Y: 2 traits  
+- X: genotype probs for 2 markers  
+- B: founder allele effects  
+- E: random errors  
+- vec: stack columns
+
+- 2d scan involves all ordered pairs of markers
+
+
+---
+
+# Jiang and Zeng  (1995)  test
+
+
+
+![](testing-pleiotropy_files/figure-html/encircle-1.png)&lt;!-- --&gt;
+
+???
+
+Fit bivariate model &amp; calculate likelihood at each grid point.
+
+
+
+---
+
+# Multiparental populations
+
+&lt;img src="testing-pleiotropy_files/figure-html/mppfig-1.png" width="700px" /&gt;
+
+
+???
+
+
+- start with 8 inbred founder lines  
+- inbred lines are color-coded  
+- each subject represented by one homologous chromosome pair  
+- over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
+
+
+
+
+---
+
+# Challenges in multiparental populations
+
+- Complex patterns of relatedness    
+
+- Multiple founder lines
+
+
+
+???
+
+Two challenges occur at the point of relating phenotypes to genotypes
+
+
+
+
+---
+
+# Challenges in multiparental populations
+
+- Complex patterns of relatedness    
+
+.soln[Multivariate random effects]
+
+- Multiple founder lines
+
+.soln[Fixed effect for each founder allele]    
+
+
+
+---
+
+# Test procedure
+
+- Model: `$$vec(Y) = Xvec(B) + vec(G) + vec(E)$$` 
+    
+- Calculate likelihoods at every grid point
+
+???
+
+- `\(G\)`: Polygenic random effects that depend on the kinship matrix  
+    
+- `\(E\)`: Random errors
+  
+  
+
+
+---
+
+# Test procedure
+
+- Test statistic: `$$- \log \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$`    
+
+- Parametric bootstrap to get a p-value    
+
+
+???
+
+We fit the bivariate QTL models at all points on the two-dimensional grid. With the likelihoods of those model fits, we calculate a likelihood ratio test statistic.
+
+Approximate the null distribution with the distribution of bootstrap test statistics
+
+---
+
+# Application
+
+- Logan, et al.  (2013)  and  Recla, et al.  (2014)  studied 261 Diversity Outbred mice    
+
+- Measured about two dozen behavioral traits
+
+???
+
+We applied our test to freely available data from the Chesler laboratory.
+
+
+---
+
+# Application
+
+- Two traits map to Chr 8:
+
+    - "hot plate latency" (57 cM)    
+
+    - "percent time in light" (55 cM)
+
+???
+
+Do they share a single QTL? 
+
+We examined these two traits because they map to the same region
+
+Hot plate latency is a measure of thermal pain sensitivity
+
+Percent time in light is related to measures of anxiety
+
+---
+
+# QTL scan results
+
+&lt;img src="figs/chr8-lods.svg" height="500px" /&gt;
+
+???
+
+- X axis is Chromosome 8 position
+- Y axis is LOD, a measure of evidence for presence of QTL. High LOD scores correspond to strong evidence of a QTL
+
+Zooming in on Chr 8, we see that "percent time in light" has a broad peak from 53 cM to 60 cM
+
+"hot plate latency" has an even broader peak, from about 55cM to 65 cM
+
+"hot plate latency" reaches LOD score of ~6, while "precent time in light" achieves a maximum LOD just over 5
+
+
+---
+
+# Allele effects plots  
+
+
+&lt;img src="figs/coefs.svg" width="500px" /&gt;
+
+???
+
+- X axis is Chr 8 position
+- Y axis is allele effect (on the trait)
+- 8 lines per figure: one for each founder line
+
+
+- Distinct allele effects patterns suggest separate QTL
+
+
+
+---
+
+# Profile LOD
+
+`$$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$`
+
+
+&lt;img src="testing-pleiotropy_files/figure-html/profile-trace-1.png" width="400" /&gt;
+
+???
+
+- Same two-dimensional grid, with trait 1 position along X axis and trait 2 position on Y axis.    
+- To calculate profile LOD at a given position for trait 1 (labeled by `\(\lambda_1 = 2\)`), I consider the five LOD values that have `\(\lambda_1 = 2\)` and choose the maximum of the five LOD values.
+
+
+
+---
+
+# Profile LOD
+
+![](figs/profile.svg)&lt;!-- --&gt;
+
+???
+
+The x axis is Chr 8 position
+
+The y axis is LOD
+
+There are three "traces": one for each trait and one for the pleiotropy hypothesis.
+
+The pleiotropy trace derives from the likelihoods for the pleiotropy models (ie, the diagonal on the grid)
+
+The "hot plate latency" profile LOD trace reveals a broad peak from 55 to 65 cM
+
+The "percent time in light" profile LOD trace displays a sharp peak atop a broad region with higher LOD scores. 
+
+The triangles correspond to the univariate QTL peak positions, while the circles are the profile LOD peak positions.
+
+The two profile LOD traces achieve the same maximum value, which is the test statistic value. 
+
+
+
+
+
+
+---
+
+# Test results
+
+
+- `\(\Lambda = 1.2\)`
+
+- `\(p = 0.11\)` (1000 bootstrap samples)
+
+
+---
+
+# Conclusions
+
+- Weak evidence for two separate QTL
+
+    - One QTL affects "distance traveled in light"    
+    
+    - Second QTL affects "hot plate latency"
+
+
+---
+
+# Contact information
+
+- frederick.boehm@gmail.com   
+
+- https://fboehm.us/     
+
+- qtl2pleio R package: [https://github.com/fboehm/qtl2pleio](https://github.com/fboehm/qtl2pleio)
+
+- Biorxiv pre-print: [http://bit.ly/boehm-biorxiv](http://bit.ly/boehm-biorxiv)
+
+
+
+---
+
+# References
+
+Jiang, C. and Z. Zeng (1995). "Multiple trait analysis of genetic
+mapping for quantitative trait loci." In: _Genetics_ 140.3, pp.
+1111-1127.
+
+Logan, R. W, R. F. Robledo, et al. (2013). "High-precision genetic
+mapping of behavioral traits in the diversity outbred mouse
+population". In: _Genes, Brain and Behavior_ 12.4, pp. 424-437.
+
+Recla, J. M, R. F. Robledo, et al. (2014). "Precise genetic
+mapping and integrative bioinformatics in Diversity Outbred mice
+reveals Hydin as a novel pain gene". In: _Mammalian genome_
+25.5-6, pp. 211-222.
+
+---
+
+# References
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%",
+"ratio": "4:3"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
