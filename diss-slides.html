@@ -4,7 +4,7 @@
     <title>Testing pleiotropy in multiparental populations</title>
     <meta charset="utf-8" />
     <meta name="author" content="Frederick Boehm" />
-    <meta name="date" content="2019-04-11" />
+    <meta name="date" content="2019-04-22" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="slides.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 
 # Testing pleiotropy in multiparental populations
 ### Frederick Boehm
-### April 11, 2019
+### April 22, 2019
 
 ---
 
@@ -46,7 +46,7 @@ class: center, middle, inverse, title-slide
 
 ???
 
-- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
+- Together, high-dimensional traits and multiparental populations can advance complex trait genetics
 
 ---
 
@@ -69,7 +69,8 @@ class: center, middle, inverse, title-slide
 
 - Perform a two-dimensional two-QTL scan     
 
-- `\(vec(Y) = Xvec(B) + vec(E)\)`     
+    - `\(vec(Y) = Xvec(B) + vec(E)\)`     
+    - Calculate likelihood at each position    
 
 - Calculate likelihood ratio test statistic     
 
@@ -90,7 +91,7 @@ class: center, middle, inverse, title-slide
 
 
 
-![](testing-pleiotropy_files/figure-html/encircle-1.png)&lt;!-- --&gt;
+![](diss-slides_files/figure-html/encircle-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -102,7 +103,7 @@ Fit bivariate model &amp; calculate likelihood at each grid point.
 
 # Multiparental populations
 
-&lt;img src="testing-pleiotropy_files/figure-html/mppfig-1.png" width="700px" /&gt;
+&lt;img src="diss-slides_files/figure-html/mppfig-1.png" width="700px" /&gt;
 
 
 ???
@@ -255,7 +256,7 @@ Zooming in on Chr 8, we see that "percent time in light" has a broad peak from 5
 `$$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$`
 
 
-&lt;img src="testing-pleiotropy_files/figure-html/profile-trace-1.png" width="400" /&gt;
+&lt;img src="diss-slides_files/figure-html/profile-trace-1.png" width="400" /&gt;
 
 ???
 
@@ -298,7 +299,7 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 # Test results
 
 
-- `\(\Lambda = 1.2\)`
+- `\(\log_{10} \Lambda = 1.2\)`
 
 - `\(p = 0.11\)` (1000 bootstrap samples)
 
@@ -312,19 +313,6 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
     - One QTL affects "distance traveled in light"    
     
     - Second QTL affects "hot plate latency"
-
-
----
-
-# Contact information
-
-- frederick.boehm@gmail.com   
-
-- https://fboehm.us/     
-
-- qtl2pleio R package: [https://github.com/fboehm/qtl2pleio](https://github.com/fboehm/qtl2pleio)
-
-- Biorxiv pre-print: [http://bit.ly/boehm-biorxiv](http://bit.ly/boehm-biorxiv)
 
 
 

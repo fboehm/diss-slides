@@ -79,7 +79,7 @@ solarized_light()
 
 ???
 
-- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
+- Together, high-dimensional traits and multiparental populations can advance complex trait genetics
 
 ---
 
@@ -102,7 +102,9 @@ solarized_light()
 
 - Perform a two-dimensional two-QTL scan     
 
-- $vec(Y) = Xvec(B) + vec(E)$     
+    - $vec(Y) = Xvec(B) + vec(E)$     
+    
+    - Calculate likelihood at each position    
 
 - Calculate likelihood ratio test statistic     
 
@@ -390,7 +392,7 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 # Test results
 
 
-- $\Lambda = 1.2$
+- $\log_{10} \Lambda = 1.2$
 
 - $p = 0.11$ (1000 bootstrap samples)
 
@@ -404,19 +406,6 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
     - One QTL affects "distance traveled in light"    
     
     - Second QTL affects "hot plate latency"
-
-
----
-
-# Contact information
-
-- frederick.boehm@gmail.com   
-
-- https://fboehm.us/     
-
-- qtl2pleio R package: [https://github.com/fboehm/qtl2pleio](https://github.com/fboehm/qtl2pleio)
-
-- Biorxiv pre-print: [http://bit.ly/boehm-biorxiv](http://bit.ly/boehm-biorxiv)
 
 
 
