@@ -80,23 +80,10 @@ class: center, middle, inverse, title-slide
 - Y: 2 traits  
 - X: genotype probs for 2 markers  
 - B: founder allele effects  
-- E: random errors  
+- E: random errors, iid within each phenotype  
 - vec: stack columns
 
 - 2d scan involves all ordered pairs of markers
-
-
----
-
-# Jiang and Zeng  (1995)  test
-
-
-
-![](diss-slides_files/figure-html/encircle-1.png)&lt;!-- --&gt;
-
-???
-
-Fit bivariate model &amp; calculate likelihood at each grid point.
 
 
 
@@ -117,24 +104,6 @@ Fit bivariate model &amp; calculate likelihood at each grid point.
 
 
 
-
----
-
-# Challenges in multiparental populations
-
-- Complex patterns of relatedness    
-
-- Multiple founder lines
-
-
-
-???
-
-Two challenges occur at the point of relating phenotypes to genotypes
-
-
-
-
 ---
 
 # Challenges in multiparental populations
@@ -146,6 +115,11 @@ Two challenges occur at the point of relating phenotypes to genotypes
 - Multiple founder lines
 
 .soln[Fixed effect for each founder allele]    
+
+
+???
+
+Two challenges occur at the point of relating phenotypes to genotypes
 
 
 
@@ -170,7 +144,7 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 # Test procedure
 
-- Test statistic: `$$- \log \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$`    
+- Test statistic: `$$- \log_{10} \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$`    
 
 - Parametric bootstrap to get a p-value    
 
@@ -213,23 +187,6 @@ We examined these two traits because they map to the same region
 Hot plate latency is a measure of thermal pain sensitivity
 
 Percent time in light is related to measures of anxiety
-
----
-
-# QTL scan results
-
-&lt;img src="figs/chr8-lods.svg" height="500px" /&gt;
-
-???
-
-- X axis is Chromosome 8 position
-- Y axis is LOD, a measure of evidence for presence of QTL. High LOD scores correspond to strong evidence of a QTL
-
-Zooming in on Chr 8, we see that "percent time in light" has a broad peak from 53 cM to 60 cM
-
-"hot plate latency" has an even broader peak, from about 55cM to 65 cM
-
-"hot plate latency" reaches LOD score of ~6, while "precent time in light" achieves a maximum LOD just over 5
 
 
 ---
@@ -289,9 +246,6 @@ The "percent time in light" profile LOD trace displays a sharp peak atop a broad
 The triangles correspond to the univariate QTL peak positions, while the circles are the profile LOD peak positions.
 
 The two profile LOD traces achieve the same maximum value, which is the test statistic value. 
-
-
-
 
 
 

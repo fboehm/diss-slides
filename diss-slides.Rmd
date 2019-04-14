@@ -19,6 +19,8 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(ggalt)
 library(knitr)
 ratio <- "4:3"
 fig_height <- ifelse(ratio=='4:3', 10, 7.5)
@@ -113,53 +115,10 @@ solarized_light()
 - Y: 2 traits  
 - X: genotype probs for 2 markers  
 - B: founder allele effects  
-- E: random errors  
+- E: random errors, iid within each phenotype  
 - vec: stack columns
 
 - 2d scan involves all ordered pairs of markers
-
-
----
-
-# `r Citet(myBib, "jiang1995multiple")` test
-
-```{r pkgs}
-library(tidyverse)
-library(ggalt) #contains geom_encircle
-```
-
-```{r encircle}
-# two-dimensional grid for pleiotropy testing
-c1 <- c(rep(1:5, each = 5), 1:5)
-c2 <- c(rep(1:5, times = 5), 1:5)
-foo <- c(rep(2, 25), rep(1, 5))
-
-tibble(c1, c2, foo = as.factor(foo)) %>%
-  ggplot() + geom_encircle(aes(x = c1, 
-                               y = c2, 
-                               color = foo, 
-                               #fill = foo, 
-                               #alpha = 0.1
-                               ), 
-                           s_shape = 0, spread = 0.01, expand = 0.05
-                           ) + 
-  geom_point(aes(x = c1, y = c2, color = foo)) + 
-  xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("trait1 position") + 
-  ylab("trait2 position") + 
-  theme(legend.position = "none") + 
-  theme(axis.text.x = element_text(face="bold",  
-                           size=14),
-          axis.text.y = element_text(face="bold",
-                           size=14), 
-        axis.title = element_text(face = "bold", size = 16)
-        )
-
-
-```
-
-???
-
-Fit bivariate model & calculate likelihood at each grid point.
 
 
 
@@ -183,24 +142,6 @@ source("R/hs_fig.R")
 
 
 
-
----
-
-# Challenges in multiparental populations
-
-- Complex patterns of relatedness    
-
-- Multiple founder lines
-
-
-
-???
-
-Two challenges occur at the point of relating phenotypes to genotypes
-
-
-
-
 ---
 
 # Challenges in multiparental populations
@@ -212,6 +153,11 @@ Two challenges occur at the point of relating phenotypes to genotypes
 - Multiple founder lines
 
 .soln[Fixed effect for each founder allele]    
+
+
+???
+
+Two challenges occur at the point of relating phenotypes to genotypes
 
 
 
@@ -236,7 +182,7 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 # Test procedure
 
-- Test statistic: $$- \log \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$    
+- Test statistic: $$- \log_{10} \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$    
 
 - Parametric bootstrap to get a p-value    
 
@@ -279,25 +225,6 @@ We examined these two traits because they map to the same region
 Hot plate latency is a measure of thermal pain sensitivity
 
 Percent time in light is related to measures of anxiety
-
----
-
-# QTL scan results
-
-```{r chr8lod, out.height="500px"}
-include_graphics("figs/chr8-lods.svg")
-```
-
-???
-
-- X axis is Chromosome 8 position
-- Y axis is LOD, a measure of evidence for presence of QTL. High LOD scores correspond to strong evidence of a QTL
-
-Zooming in on Chr 8, we see that "percent time in light" has a broad peak from 53 cM to 60 cM
-
-"hot plate latency" has an even broader peak, from about 55cM to 65 cM
-
-"hot plate latency" reaches LOD score of ~6, while "precent time in light" achieves a maximum LOD just over 5
 
 
 ---
@@ -381,9 +308,6 @@ The "percent time in light" profile LOD trace displays a sharp peak atop a broad
 The triangles correspond to the univariate QTL peak positions, while the circles are the profile LOD peak positions.
 
 The two profile LOD traces achieve the same maximum value, which is the test statistic value. 
-
-
-
 
 
 
