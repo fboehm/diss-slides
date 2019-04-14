@@ -1,7 +1,7 @@
 ---
 title: "Testing pleiotropy in multiparental populations"
 author: "Frederick Boehm"
-date: "April 11, 2019"
+date: "April 22, 2019"
 bibliography: research.bib
 output:
   xaringan::moon_reader:
