@@ -201,22 +201,17 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 - Measured about two dozen behavioral traits
 
-???
-
-We applied our test to freely available data from the Chesler laboratory.
-
-
----
-
-# Application
-
 - Two traits map to Chr 8:
 
     - "hot plate latency" (57 cM)    
 
     - "percent time in light" (55 cM)
 
+
 ???
+
+We applied our test to freely available data from the Chesler laboratory.
+
 
 Do they share a single QTL? 
 
@@ -253,41 +248,7 @@ include_graphics("figs/coefs.svg")
 
 $$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
 
-
-```{r profile-trace, out.width=400}
-c1 <- rep(1:5, each = 5)
-c2 <- rep(1:5, times = 5)
-c3 <- 2
-tibble(c1, c2) %>%
-  ggplot() + geom_encircle(aes(x = c3, 
-                               y = c2
-                               ), 
-                           s_shape = 0, spread = 0.01, expand = 0.05
-                           ) + 
-  geom_point(aes(x = c1, y = c2)) + 
-  xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("trait1 position") + 
-  ylab("trait2 position") + 
-  theme(legend.position = "none") + 
-  theme(axis.text.x = element_text(face="bold",  
-                           size=14),
-          axis.text.y = element_text(face="bold",
-                           size=14), 
-        axis.title = element_text(face = "bold", size = 16)
-        )
-```
-
-???
-
-- Same two-dimensional grid, with trait 1 position along X axis and trait 2 position on Y axis.    
-- To calculate profile LOD at a given position for trait 1 (labeled by $\lambda_1 = 2$), I consider the five LOD values that have $\lambda_1 = 2$ and choose the maximum of the five LOD values.
-
-
-
----
-
-# Profile LOD
-
-```{r profiles, echo = FALSE}
+```{r profiles, out.width = "600px", echo = FALSE}
 include_graphics("figs/profile.svg", auto_pdf = FALSE)
 ```
 
@@ -320,16 +281,35 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 
 - $p = 0.11$ (1000 bootstrap samples)
 
-
----
-
-# Conclusions
+???
 
 - Weak evidence for two separate QTL
 
     - One QTL affects "distance traveled in light"    
     
     - Second QTL affects "hot plate latency"
+
+
+---
+
+# qtl2pleio R package
+
+- Functions for $d$-variate, $d$-QTL scan & profile LOD plots
+
+- Uses C++ for matrix calculations (via Rcpp and RcppEigen)
+
+- Uses `gemma2` R implementation of GEMMA EM algorithm for multivariate random effects
+
+- Unit tests, vignettes, and version control
+
+
+???
+
+- unit tests to ensure accurate calculations
+
+- vignettes on analyzing a pair of traits & on cluster computing for bootstrap test
+
+
 
 
 
