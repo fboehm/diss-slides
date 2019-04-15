@@ -46,7 +46,7 @@ BibOptions(check.entries = FALSE,
            hyperlink = FALSE, 
            dashed = FALSE, 
            longnamesfirst = FALSE,
-           max.names = 2,
+           max.names = 1,
            bibpunct = c(" (", ") ", ",", ",", " and ", " "))
 myBib <- ReadBib("./research.bib", check = FALSE)
 ```
@@ -317,9 +317,14 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 
 # References
 
+
+
 ```{r bib, results = 'asis'}
-PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
+foo <- PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
 ```
+
+
+
 
 ---
 
