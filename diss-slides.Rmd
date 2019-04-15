@@ -46,7 +46,7 @@ BibOptions(check.entries = FALSE,
            hyperlink = FALSE, 
            dashed = FALSE, 
            longnamesfirst = FALSE,
-           max.names = 1,
+           max.names = 2,
            bibpunct = c(" (", ") ", ",", ",", " and ", " "))
 myBib <- ReadBib("./research.bib", check = FALSE)
 ```
@@ -106,7 +106,7 @@ solarized_light()
 
     - $vec(Y) = Xvec(B) + vec(E)$     
     
-    - Calculate likelihood at each position    
+    - Calculate likelihood at each ordered pair of positions    
 
 - Calculate likelihood ratio test statistic     
 
@@ -165,9 +165,15 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 # Test procedure
 
-- Model: $$vec(Y) = Xvec(B) + vec(G) + vec(E)$$ 
+- Perform a two-dimensional two-QTL scan     
+
+    - $vec(Y) = Xvec(B) + vec(G) + vec(E)$     
     
-- Calculate likelihoods at every grid point
+    - Calculate likelihood at each ordered pair of positions    
+
+- Calculate likelihood ratio test statistic     
+
+
 
 ???
 
@@ -289,6 +295,69 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
     
     - Second QTL affects "hot plate latency"
 
+---
+class: inverse, middle, center
+
+# Power study with local expression QTL
+
+---
+
+# Power study: Design
+
+
+
+- Examine power when I know true eQTL locations
+
+    - Interlocus distance    
+    - Univariate LOD    
+
+- 80 local eQTL on Chr 19 (LOD > 7.2)
+
+- 4 strong, centrally located, local eQTL chosen as "anchor" traits
+
+    - Asah2, Lipo1, Lipo2, 4933413C19Rik
+
+- Pairwise pleiotropy tests each involving one anchor and one of 79 other traits
+
+
+
+---
+
+# Power study: Interlocus distance
+
+```{r, out.height = "500px"}
+include_graphics("../keller-2018-chr19-power/Rmd/lrt-v-middle-of-gene.svg", auto_pdf = FALSE)
+```
+
+
+
+
+---
+
+# Power study: Univariate LOD
+
+```{r, out.height="500px"}
+include_graphics("../keller-2018-chr19-power/Rmd/lrt-v-univariate-lod.svg", auto_pdf = FALSE)
+```
+
+
+
+---
+
+# Power study: Conclusions
+
+- $\uparrow$ Interlocus distance $\longrightarrow$ $\uparrow$ Pleiotropy test statistics
+
+- $\uparrow$ Univariate LOD $\longrightarrow$ $\uparrow$ Pleiotropy test statistics
+
+
+
+
+---
+class: inverse, middle, center
+
+# qtl2pleio R package
+
 
 ---
 
@@ -310,6 +379,13 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 - vignettes on analyzing a pair of traits & on cluster computing for bootstrap test
 
 
+---
+class: inverse, middle, center
+
+# Thank you!
+
+
+
 
 
 
@@ -325,12 +401,4 @@ foo <- PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end
 
 
 
-
----
-
-# References
-
-```{r bib2, results = 'asis'}
-PrintBibliography(myBib, .opts = list(style = "markdown"), start = 4, end = 6)
-```
 

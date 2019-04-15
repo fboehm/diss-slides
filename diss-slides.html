@@ -50,7 +50,7 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Jiang, et al.  (1995)  test
+# Jiang and Zeng  (1995)  test
 
 - Two-parent crosses    
 
@@ -64,14 +64,14 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Jiang, et al.  (1995)  test
+# Jiang and Zeng  (1995)  test
 
 
 - Perform a two-dimensional two-QTL scan     
 
     - `\(vec(Y) = Xvec(B) + vec(E)\)`     
     
-    - Calculate likelihood at each position    
+    - Calculate likelihood at each ordered pair of positions    
 
 - Calculate likelihood ratio test statistic     
 
@@ -127,9 +127,15 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 # Test procedure
 
-- Model: `$$vec(Y) = Xvec(B) + vec(G) + vec(E)$$` 
+- Perform a two-dimensional two-QTL scan     
+
+    - `\(vec(Y) = Xvec(B) + vec(G) + vec(E)\)`     
     
-- Calculate likelihoods at every grid point
+    - Calculate likelihood at each ordered pair of positions    
+
+- Calculate likelihood ratio test statistic     
+
+
 
 ???
 
@@ -247,6 +253,65 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
     
     - Second QTL affects "hot plate latency"
 
+---
+class: inverse, middle, center
+
+# Power study with local expression QTL
+
+---
+
+# Power study: Design
+
+
+
+- Examine power when I know true eQTL locations
+
+    - Interlocus distance    
+    - Univariate LOD    
+
+- 80 local eQTL on Chr 19 (LOD &gt; 7.2)
+
+- 4 strong, centrally located, local eQTL chosen as "anchor" traits
+
+    - Asah2, Lipo1, Lipo2, 4933413C19Rik
+
+- Pairwise pleiotropy tests each involving one anchor and one of 79 other traits
+
+
+
+---
+
+# Power study: Interlocus distance
+
+&lt;img src="../keller-2018-chr19-power/Rmd/lrt-v-middle-of-gene.svg" height="500px" /&gt;
+
+
+
+
+---
+
+# Power study: Univariate LOD
+
+&lt;img src="../keller-2018-chr19-power/Rmd/lrt-v-univariate-lod.svg" height="500px" /&gt;
+
+
+
+---
+
+# Power study: Conclusions
+
+- `\(\uparrow\)` Interlocus distance `\(\longrightarrow\)` `\(\uparrow\)` Pleiotropy test statistics
+
+- `\(\uparrow\)` Univariate LOD `\(\longrightarrow\)` `\(\uparrow\)` Pleiotropy test statistics
+
+
+
+
+---
+class: inverse, middle, center
+
+# qtl2pleio R package
+
 
 ---
 
@@ -268,6 +333,13 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 - vignettes on analyzing a pair of traits &amp; on cluster computing for bootstrap test
 
 
+---
+class: inverse, middle, center
+
+# Thank you!
+
+
+
 
 
 
@@ -277,24 +349,18 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 
 
 
-Jiang, C, et al. (1995). "Multiple trait analysis of genetic
+Jiang, C. and Z. Zeng (1995). "Multiple trait analysis of genetic
 mapping for quantitative trait loci." In: _Genetics_ 140.3, pp.
 1111-1127.
 
-Logan, R. W, et al. (2013). "High-precision genetic mapping of
-behavioral traits in the diversity outbred mouse population". In:
-_Genes, Brain and Behavior_ 12.4, pp. 424-437.
+Logan, R. W, R. F. Robledo, et al. (2013). "High-precision genetic
+mapping of behavioral traits in the diversity outbred mouse
+population". In: _Genes, Brain and Behavior_ 12.4, pp. 424-437.
 
-Recla, J. M, et al. (2014). "Precise genetic mapping and
-integrative bioinformatics in Diversity Outbred mice reveals Hydin
-as a novel pain gene". In: _Mammalian genome_ 25.5-6, pp. 211-222.
-
-
-
-
----
-
-# References
+Recla, J. M, R. F. Robledo, et al. (2014). "Precise genetic
+mapping and integrative bioinformatics in Diversity Outbred mice
+reveals Hydin as a novel pain gene". In: _Mammalian genome_
+25.5-6, pp. 211-222.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
