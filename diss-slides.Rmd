@@ -52,6 +52,7 @@ myBib <- ReadBib("./research.bib", check = FALSE)
 ```
 
 
+
 ```{r xaringan-themer, include = FALSE}
 library(xaringanthemer)
 #mono_light(
@@ -78,6 +79,9 @@ solarized_light()
 
 - New analysis tools, such as a pleiotropy test for multiparental populations, are needed 
 
+.pull-left[<img src="figs/mouse_on_chips.png" width="200" height="150" />]
+
+.pull-right[.tiny[Photo by Alan Attie]]
 
 ???
 
@@ -153,6 +157,11 @@ source("R/hs_fig.R")
 - Multiple founder lines
 
 .soln[Fixed effect for each founder allele]    
+
+
+.pull-left[<img src="figs/cc_founders.png" width="200" height="200" />]
+
+.pull-right[.tiny[Photo by UNC Computational Genetics]]
 
 
 ???
