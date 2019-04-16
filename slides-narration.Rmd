@@ -1,0 +1,95 @@
+---
+title: "Slides Narration"
+author: "Frederick Boehm"
+date: "4/16/2019"
+output: html_document
+---
+
+## Slide 1 (Title slide)
+
+Welcome to my dissertation defense. In this presentation, I'll tell you about some of the highlights of my research in statistical genetics. 
+
+The title of my talk is "Testing pleiotropy in multiparental populations". Before I continue, I want to define the key terms in the title. "Pleiotropy" is a genetic phenomenon in which a single gene affects multiple traits. Traits include characteristics like body weight, height, and blood pressure. "Multiparental populations" refers to model organisms, such as mice or fruit flies, that contain DNA from more than two founders. I'll elaborate on this idea in the talk. 
+
+
+
+## Slide 2 (Background)
+
+Gene mapping studies identify "quantitative trait loci" or "QTL" that affect a trait of interest. A "QTL" is a region of the genome that affects a trait. In ongoing research, scientists are measuring more than ten thousand traits per animal with high-throughput technologies, including RNA sequencing and protein mass spectrometry. The combination of these with the high mapping resolution of some multiparental populations holds great promise for hte study of complex trait genetics. However, to fully leverage these rich resources, we need statistical tools and methods that consider more than one trait at a time. One example of such a method is a test of pleiotropy for multiparental populations.
+
+
+
+## Slide 3 (JZ 1995, 1)
+
+Jiang and Zeng developed a pleiotropy test in two-parent crosses in the mid-1990s. Their test applies to two traits that map to the same genomic region. They formulated their test with pleiotropy being the null hypothesis and alternative hypothesis being presence of two separate QTL, with each affecting exactly one trait.
+
+## Slide 4 (JZ, 2)
+
+Jiang and Zeng perform a two-dimensional, two-QTL scan in which they fit a statistical model at every ordered pair of positions in a genomic region of interest. They fit a linear model in which Y contains two traits, X contains genotype probabilities, B contains genotype effects, and E contains the random errors. With the model fits, they calculate the likelihood at every ordered pair of positions, which, in turn, facilitates calculation of a likelihood ratio test statistic. 
+
+
+## Slide 5 (MPP, hs_fig.R)
+
+In this figure, I illustrate the genomic variation in an outbred multiparental population like the Diversity Outbred mice.
+
+I represent each animal by a pair of chromosomes. Across the top row are the eight founder lines with color-coded DNA. Each subsequent row is a sample from later generations.
+
+Notice that the founder DNA is shuffled in smaller and smaller chunks in later generations. It's also evident from this figure that there are complicated patterns of relatedness between subjects.
+
+
+## Slide 6 (Challenges in MPPs)
+
+Two challenges arise when trying to adapt Jiang and Zeng's pleiotropy test to the setting of multiparental populations. The first challenge is the complex patterns of relatedness among the subjects. To address this challenge, we incorporated polygenic random effects into our statistical model.
+
+The second challenge is that there are more than two founder lines. To accommodate this, we incorporated one fixed effect per founder line.
+
+
+## Slide 7 (test procedure)
+
+Like in Jiang and Zeng's test, we examine two traits that map to a single genomic region. We perform a two-dimensional, two-QTL scan over the region, where we fit at every ordered pair of positions a linear mixed effects model. With these model fits, we calculate the likelihoods and the likelihood ratio test statistic.
+
+
+## Slide 8 (Test procedure, 2)
+
+The likelihood ratio test statistic is the logarithm of the ratio of two likelihoods: the maximum likelihood under the pleiotropy hypothesis and the maximum likelihood under the alternative hypothesis.
+
+We then use a parametric bootstrap to obtain a p-value.
+
+
+## Slide 9 (Application, 1)
+
+To demonstrate the utility of our test, we applied it to data from Diversity Outbred mice. Diversity Outbred mice arise from a multiparental design involving eight inbred founder lines.
+
+Logan and Recla measured about two dozen behavioral traits in 261 Diversity Outbred mice. Two traits - hot plate latency and percent time in light - both mapped to about the same position on Chromosome 8. Thus, we studied them with our pleiotropy test.
+
+
+## Slide 10 (allele effects plots)
+
+We examined allele effects plots for the two traits. Along the x axis is Chromosome 8 position (in centi-Morgans) and the y axis is allele effect. The 8 founder allele effects are color-coded. We focus on the region between 55 and 57 cM. We see that the two traits demonstrate very different patterns in allele effects. Percent time in light has low effect for NOD and high effects for PWK and WSB. Hot plate latency, a measure of thermal pain sensitivity, has low effects for CAST and B6. 
+
+
+
+## Slide 11 (profile lod)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
