@@ -36,7 +36,7 @@ class: center, middle, inverse, title-slide
 
 
 
-# Introduction
+# Background
 
 - 10,000+ traits with RNA sequencing and mass spectrometry 
 
@@ -46,11 +46,33 @@ class: center, middle, inverse, title-slide
 
 .pull-left[&lt;img src="figs/mouse_on_chips.png" width="200" height="150" /&gt;]
 
-.pull-right[.tiny[Photo by Alan Attie]]
+.pull-right[.small[Photo by Alan Attie]]
 
 ???
 
 - Together, high-dimensional traits and multiparental populations can advance complex trait genetics
+
+---
+
+# Benefits of a pleiotropy test for multiparental populations
+
+- Insights into genetic architecture
+
+- Tool for expression trait hotspot dissection
+
+- Complements mediation analysis
+
+???
+
+
+When trying to identify an intermediate, a pleiotropy test limits the number of mediation analyses by identifying traits that share a QTL
+
+
+
+
+
+
+
 
 ---
 
@@ -123,7 +145,7 @@ class: center, middle, inverse, title-slide
 
 .pull-left[&lt;img src="figs/cc_founders.png" width="200" height="200" /&gt;]
 
-.pull-right[.tiny[Photo by UNC Computational Genetics]]
+.pull-right[.small[Photo by UNC Computational Genetics]]
 
 
 ???
@@ -267,18 +289,26 @@ class: inverse, middle, center
 
 # Power study with local expression QTL
 
+
 ---
 
-# Power study: Design
+# Data
+
+- Keller Gatti, et al.  (2018)  measured pancreatic islet gene expression levels in 378 Diversity Outbred mice
+
+- 80 local expression QTL were identified in a 20-Mb region of Chr 19
+
+    - local: expression trait QTL is near gene position
 
 
+---
 
-- Examine power when I know true eQTL locations
+# Design
+
+- Examine power when expression trait QTL locations are known
 
     - Interlocus distance    
     - Univariate LOD    
-
-- 80 local eQTL on Chr 19 (LOD &gt; 7.2)
 
 - 4 strong, centrally located, local eQTL chosen as "anchor" traits
 
@@ -287,19 +317,33 @@ class: inverse, middle, center
 - Pairwise pleiotropy tests each involving one anchor and one of 79 other traits
 
 
+---
+
+# Interlocus distance
+
+&lt;img src="figs/lrt-v-middle-of-gene-slides-1.svg" height="500px" /&gt;
+
+
+
 
 ---
 
-# Power study: Interlocus distance
+# Interlocus distance
 
 &lt;img src="figs/lrt-v-middle-of-gene-slides.svg" height="500px" /&gt;
 
 
+---
+
+# Univariate LOD
+
+&lt;img src="figs/lrt-v-univariate-lod-slides-1.svg" height="500px" /&gt;
+
 
 
 ---
 
-# Power study: Univariate LOD
+# Univariate LOD
 
 &lt;img src="figs/lrt-v-univariate-lod-slides.svg" height="500px" /&gt;
 
@@ -307,7 +351,7 @@ class: inverse, middle, center
 
 ---
 
-# Power study: Conclusions
+# Conclusions
 
 - `\(\uparrow\)` Interlocus distance `\(\longrightarrow\)` `\(\uparrow\)` Pleiotropy test statistics
 
@@ -362,14 +406,12 @@ Jiang, C. and Z. Zeng (1995). "Multiple trait analysis of genetic
 mapping for quantitative trait loci." In: _Genetics_ 140.3, pp.
 1111-1127.
 
+Keller, M. P, D. M. Gatti, et al. (2018). "Genetic Drivers of
+Pancreatic Islet Function". In: _Genetics_, pp. genetics-300864.
+
 Logan, R. W, R. F. Robledo, et al. (2013). "High-precision genetic
 mapping of behavioral traits in the diversity outbred mouse
 population". In: _Genes, Brain and Behavior_ 12.4, pp. 424-437.
-
-Recla, J. M, R. F. Robledo, et al. (2014). "Precise genetic
-mapping and integrative bioinformatics in Diversity Outbred mice
-reveals Hydin as a novel pain gene". In: _Mammalian genome_
-25.5-6, pp. 211-222.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

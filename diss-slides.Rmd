@@ -71,7 +71,7 @@ solarized_light()
 
 
 
-# Introduction
+# Background
 
 - 10,000+ traits with RNA sequencing and mass spectrometry 
 
@@ -81,11 +81,33 @@ solarized_light()
 
 .pull-left[<img src="figs/mouse_on_chips.png" width="200" height="150" />]
 
-.pull-right[.tiny[Photo by Alan Attie]]
+.pull-right[.small[Photo by Alan Attie]]
 
 ???
 
 - Together, high-dimensional traits and multiparental populations can advance complex trait genetics
+
+---
+
+# Benefits of a pleiotropy test for multiparental populations
+
+- Insights into genetic architecture
+
+- Tool for expression trait hotspot dissection
+
+- Complements mediation analysis
+
+???
+
+
+When trying to identify an intermediate, a pleiotropy test limits the number of mediation analyses by identifying traits that share a QTL
+
+
+
+
+
+
+
 
 ---
 
@@ -161,7 +183,7 @@ source("R/hs_fig.R")
 
 .pull-left[<img src="figs/cc_founders.png" width="200" height="200" />]
 
-.pull-right[.tiny[Photo by UNC Computational Genetics]]
+.pull-right[.small[Photo by UNC Computational Genetics]]
 
 
 ???
@@ -309,18 +331,26 @@ class: inverse, middle, center
 
 # Power study with local expression QTL
 
+
 ---
 
-# Power study: Design
+# Data
+
+- `r Citet(myBib, "keller2018genetic")` measured pancreatic islet gene expression levels in 378 Diversity Outbred mice
+
+- 80 local expression QTL were identified in a 20-Mb region of Chr 19
+
+    - local: expression trait QTL is near gene position
 
 
+---
 
-- Examine power when I know true eQTL locations
+# Design
+
+- Examine power when expression trait QTL locations are known
 
     - Interlocus distance    
     - Univariate LOD    
-
-- 80 local eQTL on Chr 19 (LOD > 7.2)
 
 - 4 strong, centrally located, local eQTL chosen as "anchor" traits
 
@@ -329,13 +359,12 @@ class: inverse, middle, center
 - Pairwise pleiotropy tests each involving one anchor and one of 79 other traits
 
 
-
 ---
 
-# Power study: Interlocus distance
+# Interlocus distance
 
 ```{r, out.height = "500px"}
-include_graphics("figs/lrt-v-middle-of-gene-slides.svg", auto_pdf = FALSE)
+include_graphics("figs/lrt-v-middle-of-gene-slides-1.svg", auto_pdf = FALSE)
 ```
 
 
@@ -343,7 +372,26 @@ include_graphics("figs/lrt-v-middle-of-gene-slides.svg", auto_pdf = FALSE)
 
 ---
 
-# Power study: Univariate LOD
+# Interlocus distance
+
+```{r, out.height = "500px"}
+include_graphics("figs/lrt-v-middle-of-gene-slides.svg", auto_pdf = FALSE)
+```
+
+
+---
+
+# Univariate LOD
+
+```{r, out.height="500px"}
+include_graphics("figs/lrt-v-univariate-lod-slides-1.svg", auto_pdf = FALSE)
+```
+
+
+
+---
+
+# Univariate LOD
 
 ```{r, out.height="500px"}
 include_graphics("figs/lrt-v-univariate-lod-slides.svg", auto_pdf = FALSE)
@@ -353,7 +401,7 @@ include_graphics("figs/lrt-v-univariate-lod-slides.svg", auto_pdf = FALSE)
 
 ---
 
-# Power study: Conclusions
+# Conclusions
 
 - $\uparrow$ Interlocus distance $\longrightarrow$ $\uparrow$ Pleiotropy test statistics
 
