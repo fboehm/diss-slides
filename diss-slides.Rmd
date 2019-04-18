@@ -70,6 +70,25 @@ solarized_light()
 
 
 
+# Multiparental populations
+
+```{r mppfig, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
+source("R/hs_fig.R")
+# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
+```
+
+
+???
+
+
+- start with 8 inbred founder lines  
+- inbred lines are color-coded  
+- each subject represented by one homologous chromosome pair  
+- over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
+
+
+---
+
 
 # Background
 
@@ -89,7 +108,7 @@ solarized_light()
 
 ---
 
-# Benefits of a pleiotropy test for multiparental populations
+# Benefits of a new pleiotropy test
 
 - Insights into genetic architecture
 
@@ -146,25 +165,6 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 - 2d scan involves all ordered pairs of markers
 
-
-
----
-
-# Multiparental populations
-
-```{r mppfig, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
-source("R/hs_fig.R")
-# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
-```
-
-
-???
-
-
-- start with 8 inbred founder lines  
-- inbred lines are color-coded  
-- each subject represented by one homologous chromosome pair  
-- over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
 
 
 
@@ -336,7 +336,7 @@ class: inverse, middle, center
 
 # Data
 
-- `r Citet(myBib, "keller2018genetic")` measured pancreatic islet gene expression levels in 378 Diversity Outbred mice
+- `r Citet(myBib, "keller2018genetic", .opts = list(max.names = 1))` measured pancreatic islet gene expression levels in 378 Diversity Outbred mice
 
 - 80 local expression QTL were identified in a 20-Mb region of Chr 19
 
@@ -363,8 +363,71 @@ class: inverse, middle, center
 
 # Interlocus distance
 
-```{r, out.height = "500px"}
-include_graphics("figs/lrt-v-middle-of-gene-slides-1.svg", auto_pdf = FALSE)
+```{r load-plotly}
+library(plotly)
+```
+
+
+
+```{r make-pp, out.height = "500px"}
+path <- "../keller-2018-chr19-power/Rmd"
+read_csv(file.path(path, "2018-11-26_lrt-tibble.csv")) -> r3104
+read_csv(file.path(path, "2018-12-03_lrt-tibble-run3105.csv")) -> r3105
+read_csv(file.path(path, "2018-12-03_lrt-tibble-run3106.csv")) -> r3106
+read_csv(file.path(path, "2018-12-03_lrt-tibble-run3107.csv")) -> r3107
+bind_rows(r3104, r3105, r3106, r3107) -> rr
+
+
+## ------------------------------------------------------------------------
+load("../keller-2018-chr19-power/data/Attie_DO378_eQTL_viewer_v1.Rdata")
+
+
+## ------------------------------------------------------------------------
+foo <- dataset.islet.rnaseq$annots %>%
+  select(gene_id, symbol, start, end, middle) 
+rr2 <- foo %>% 
+  right_join(rr, by = c("gene_id" = "gene1")) %>%
+  rename(gene1_symbol = symbol, gene1 = gene_id, gene1_start = start, gene1_end = end, gene1_middle = middle) %>%
+  left_join(foo, by = c("gene2" = "gene_id")) %>%
+  rename(gene2_symbol = symbol, gene2_start = start, gene2_end = end, gene2_middle = middle)
+
+
+## ------------------------------------------------------------------------
+bar <- dataset.islet.rnaseq$lod.peaks %>%
+  filter(chrom == 19)
+rr3 <- bar %>%
+  right_join(rr2, by = c("annot.id" = "gene1")) %>%
+  rename(gene1 = annot.id, gene1_marker.id = marker.id, gene1_pos = pos, gene1_lod = lod) %>%
+  left_join(bar, by = c("gene2" = "annot.id")) %>%
+  rename(gene2_marker.id = marker.id, gene2_pos = pos, gene2_lod = lod) %>%
+  select(- chrom.x, - chrom.y)
+
+
+## ------------------------------------------------------------------------
+
+
+## ------------------------------------------------------------------------
+nodup <- rr3 %>%
+  filter(!duplicated(gene2)) %>%
+  arrange(desc(gene2_lod))
+
+
+
+
+## ------------------------------------------------------------------------
+pp <- rr3 %>%
+  mutate(gene2_symbol_factor = factor(gene2_symbol, levels = nodup$gene2_symbol, labels = paste0(nodup$gene2_symbol, " (", round(nodup$gene2_lod, 1), ")"))) %>% 
+  filter(gene2_symbol == "Asah2") %>%
+  ggplot() + geom_point(aes(x = gene1_middle, y = lrt, colour = gene1_lod, text = paste("gene1_symbol: ", gene1_symbol, " "))) +
+  ggtitle("Asah2") + 
+  geom_vline(aes(xintercept = gene2_middle)) + 
+  xlab("Chromosome 19 position") + 
+  ylab("Pleiotropy v separate QTL test statistic") + 
+  scale_color_gradient(low = "#500707", high = "#ee0909", name = "Trait LOD")
+```
+
+```{r ggplotly, out.height = "500px", out.width = "700px"}
+ggplotly(pp, tooltip = c("text"))
 ```
 
 
@@ -376,15 +439,6 @@ include_graphics("figs/lrt-v-middle-of-gene-slides-1.svg", auto_pdf = FALSE)
 
 ```{r, out.height = "500px"}
 include_graphics("figs/lrt-v-middle-of-gene-slides.svg", auto_pdf = FALSE)
-```
-
-
----
-
-# Univariate LOD
-
-```{r, out.height="500px"}
-include_graphics("figs/lrt-v-univariate-lod-slides-1.svg", auto_pdf = FALSE)
 ```
 
 
@@ -403,10 +457,9 @@ include_graphics("figs/lrt-v-univariate-lod-slides.svg", auto_pdf = FALSE)
 
 # Conclusions
 
-- $\uparrow$ Interlocus distance $\longrightarrow$ $\uparrow$ Pleiotropy test statistics
-
-- $\uparrow$ Univariate LOD $\longrightarrow$ $\uparrow$ Pleiotropy test statistics
-
+- $\uparrow$ Pleiotropy test statistics
+   - $\uparrow$ Interlocus distance
+   - $\uparrow$ Univariate LOD
 
 
 
@@ -437,10 +490,18 @@ class: inverse, middle, center
 
 
 ---
-class: inverse, middle, center
 
-# Thank you!
+# Summary
 
+
+1. Background  
+2. Methods  
+3. Applications  
+    a. Pleiotropy testing and mediation analysis  
+    b. Power in pleiotropy testing  
+    c. Microbiome case study  
+4. Software  
+5. Conclusions
 
 
 
