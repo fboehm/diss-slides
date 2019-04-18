@@ -261,11 +261,11 @@ Percent time in light is related to measures of anxiety
 
 ---
 
-# Allele effects plots  
+# Percent time in light
 
 
-```{r effects, echo = FALSE, out.width = "500px"}
-include_graphics("figs/coefs.svg")
+```{r percentlight, echo = FALSE, out.width = "650px"}
+include_graphics("figs/percent-time-light-coef-lod-Chr8.svg")
 ```
 
 ???
@@ -274,8 +274,37 @@ include_graphics("figs/coefs.svg")
 - Y axis is allele effect (on the trait)
 - 8 lines per figure: one for each founder line
 
+---
+
+# Hot plate latency
+
+
+```{r hotplate, echo = FALSE, out.width = "650px"}
+include_graphics("figs/hot-plate-latency-coef-lod-Chr8.svg")
+```
+
+
+
+???
 
 - Distinct allele effects patterns suggest separate QTL
+
+
+---
+
+# LOD definitions
+
+- $$LOD(\lambda_1, \lambda_2) = ll_{10}(\lambda_1, \lambda_2) - \max ll_{10}(\lambda, \lambda)$$
+
+
+- $$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = \max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
+
+
+
+- $$LOD_p(\lambda) = ll_{10}(\lambda, \lambda) - \max ll_{10}(\lambda, \lambda)$$
+
+
+
 
 
 
@@ -283,9 +312,8 @@ include_graphics("figs/coefs.svg")
 
 # Profile LOD
 
-$$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
 
-```{r profiles, out.width = "600px", echo = FALSE}
+```{r profiles, out.width = "650px", echo = FALSE}
 include_graphics("figs/profile.svg", auto_pdf = FALSE)
 ```
 
