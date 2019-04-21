@@ -94,13 +94,12 @@ source("R/hs_fig.R")
 
 - 10,000+ traits with RNA sequencing and mass spectrometry 
 
+- Quantitative trait locus mapping identifies genetic loci that affect measurable traits
+
 - Multiparental populations offer high-resolution QTL mapping
 
 - New analysis tools, such as a pleiotropy test for multiparental populations, are needed 
 
-.pull-left[<img src="figs/mouse_on_chips.png" width="200" height="150" />]
-
-.pull-right[.small[Photo by Alan Attie]]
 
 ???
 
@@ -370,14 +369,14 @@ class: inverse, middle, center
 
     - local: expression trait QTL is near gene position
 
-- Assume that a given local expression QTL doesn't affect other local expression traits
+- Assume that a local expression QTL affects only one local expression trait
 
 
 ---
 
 # Design
 
-- Examine power when expression trait QTL locations are known
+- Examine power with known expression trait QTL locations
 
     - Interlocus distance    
     - Univariate LOD    
