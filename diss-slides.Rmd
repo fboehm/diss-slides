@@ -370,6 +370,8 @@ class: inverse, middle, center
 
     - local: expression trait QTL is near gene position
 
+- Assume that a given local expression QTL doesn't affect other local expression traits
+
 
 ---
 
