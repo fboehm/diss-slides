@@ -294,14 +294,14 @@ include_graphics("figs/hot-plate-latency-coef-lod-Chr8.svg")
 
 # LOD definitions
 
-- $$LOD(\lambda_1, \lambda_2) = ll_{10}(\lambda_1, \lambda_2) - \max ll_{10}(\lambda, \lambda)$$
+- $$LOD(\lambda_1, \lambda_2) = ll_{10}(\lambda_1, \lambda_2) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
 
 
 - $$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = \max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
 
 
 
-- $$LOD_p(\lambda) = ll_{10}(\lambda, \lambda) - \max ll_{10}(\lambda, \lambda)$$
+- $$LOD_p(\lambda) = ll_{10}(\lambda, \lambda) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
 
 
 
