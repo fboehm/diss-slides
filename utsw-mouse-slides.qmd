@@ -3,18 +3,10 @@ title: "Testing pleiotropy in multiparental populations"
 author: "Frederick Boehm"
 date: "June 13, 2023"
 bibliography: research.bib
-output:
-  xaringan::moon_reader:
-    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      slideNumberFormat: '%current%'
-      ratio: "4:3"
+format: 
+  revealjs:
+    theme: [moon]
     css: [default, 'slides.css', xaringan-themer.css]
-    chakra: libs/remark-latest.min.js
 ---
 
 ```{r setup, include=FALSE}
@@ -33,7 +25,6 @@ knitr::opts_chunk$set(#dev="svg",
                       #fig.height=fig_height,
                       #fig.width=fig_width,
                       warning=FALSE, message=FALSE)
-xaringan::summon_remark() # download latest version, locally
 ```
 
 
@@ -48,21 +39,10 @@ BibOptions(check.entries = FALSE,
            longnamesfirst = FALSE,
            max.names = 2,
            bibpunct = c(" (", ") ", ",", ",", " and ", " "))
-myBib <- ReadBib("./research.bib", check = FALSE)
+myBib <- ReadBib("research.bib", check = FALSE)
 ```
 
 
-
-```{r xaringan-themer, include = FALSE}
-library(xaringanthemer)
-#mono_light(
-#  base_color = "#1c5253",
-#  header_font_google = google_font("Josefin Sans"),
-#  text_font_google   = google_font("Montserrat", "300", #"300i"),
-#  code_font_google   = google_font("Droid Mono")
-#)
-solarized_light()
-```
 
 
 
@@ -392,72 +372,6 @@ class: inverse, middle, center
 
 # Interlocus distance
 
-```{r load-plotly}
-library(plotly)
-```
-
-
-
-```{r make-pp, out.height = "500px"}
-path <- "../keller-2018-chr19-power/Rmd"
-read_csv(file.path(path, "2018-11-26_lrt-tibble.csv")) -> r3104
-read_csv(file.path(path, "2018-12-03_lrt-tibble-run3105.csv")) -> r3105
-read_csv(file.path(path, "2018-12-03_lrt-tibble-run3106.csv")) -> r3106
-read_csv(file.path(path, "2018-12-03_lrt-tibble-run3107.csv")) -> r3107
-bind_rows(r3104, r3105, r3106, r3107) -> rr
-
-
-## ------------------------------------------------------------------------
-load("../keller-2018-chr19-power/data/Attie_DO378_eQTL_viewer_v1.Rdata")
-
-
-## ------------------------------------------------------------------------
-foo <- dataset.islet.rnaseq$annots %>%
-  select(gene_id, symbol, start, end, middle) 
-rr2 <- foo %>% 
-  right_join(rr, by = c("gene_id" = "gene1")) %>%
-  rename(gene1_symbol = symbol, gene1 = gene_id, gene1_start = start, gene1_end = end, gene1_middle = middle) %>%
-  left_join(foo, by = c("gene2" = "gene_id")) %>%
-  rename(gene2_symbol = symbol, gene2_start = start, gene2_end = end, gene2_middle = middle)
-
-
-## ------------------------------------------------------------------------
-bar <- dataset.islet.rnaseq$lod.peaks %>%
-  filter(chrom == 19)
-rr3 <- bar %>%
-  right_join(rr2, by = c("annot.id" = "gene1")) %>%
-  rename(gene1 = annot.id, gene1_marker.id = marker.id, gene1_pos = pos, gene1_lod = lod) %>%
-  left_join(bar, by = c("gene2" = "annot.id")) %>%
-  rename(gene2_marker.id = marker.id, gene2_pos = pos, gene2_lod = lod) %>%
-  select(- chrom.x, - chrom.y)
-
-
-## ------------------------------------------------------------------------
-
-
-## ------------------------------------------------------------------------
-nodup <- rr3 %>%
-  filter(!duplicated(gene2)) %>%
-  arrange(desc(gene2_lod))
-
-
-
-
-## ------------------------------------------------------------------------
-pp <- rr3 %>%
-  mutate(gene2_symbol_factor = factor(gene2_symbol, levels = nodup$gene2_symbol, labels = paste0(nodup$gene2_symbol, " (", round(nodup$gene2_lod, 1), ")"))) %>% 
-  filter(gene2_symbol == "Asah2") %>%
-  ggplot() + geom_point(aes(x = gene1_middle, y = lrt, colour = gene1_lod, text = paste("gene1_symbol: ", gene1_symbol, " "))) +
-  ggtitle("Asah2") + 
-  geom_vline(aes(xintercept = gene2_middle)) + 
-  xlab("Chromosome 19 position") + 
-  ylab("Pleiotropy v separate QTL test statistic") + 
-  scale_color_gradient(low = "#500707", high = "#ee0909", name = "Trait LOD")
-```
-
-```{r ggplotly, out.height = "500px", out.width = "700px"}
-ggplotly(pp, tooltip = c("text"))
-```
 
 
 
