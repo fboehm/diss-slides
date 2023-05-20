@@ -1,7 +1,7 @@
 DOCNAME=utsw-mouse-slides
 
 
-all: $(DOCNAME).pdf
+all: $(DOCNAME).html
 
 
 $(DOCNAME).html: $(DOCNAME).qmd R/hs_fig.R slides.css research.bib figs/lrt-v-middle-of-gene-slides.svg figs/lrt-v-univariate-lod-slides.svg
