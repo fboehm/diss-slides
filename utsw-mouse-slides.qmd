@@ -1,0 +1,551 @@
+---
+title: "Testing pleiotropy in multiparental populations"
+author: "Frederick Boehm"
+date: "June 13, 2023"
+bibliography: research.bib
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      slideNumberFormat: '%current%'
+      ratio: "4:3"
+    css: [default, 'slides.css', xaringan-themer.css]
+    chakra: libs/remark-latest.min.js
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(ggalt)
+library(knitr)
+ratio <- "4:3"
+fig_height <- ifelse(ratio=='4:3', 10, 7.5)
+fig_width <- 15
+curves_height <- ifelse(ratio=='4:3', 580, 540)
+curves_width <- ifelse(ratio=='4:3', 800, 1080)
+knitr::opts_chunk$set(#dev="svg", 
+                      echo=FALSE, 
+                      #results="hide",
+                      #fig.height=fig_height,
+                      #fig.width=fig_width,
+                      warning=FALSE, message=FALSE)
+xaringan::summon_remark() # download latest version, locally
+```
+
+
+```{r load_refs, echo=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE, 
+           bib.style = "authoryear", 
+           cite.style = 'authoryear', 
+           style = "markdown",
+           hyperlink = FALSE, 
+           dashed = FALSE, 
+           longnamesfirst = FALSE,
+           max.names = 2,
+           bibpunct = c(" (", ") ", ",", ",", " and ", " "))
+myBib <- ReadBib("./research.bib", check = FALSE)
+```
+
+
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+#mono_light(
+#  base_color = "#1c5253",
+#  header_font_google = google_font("Josefin Sans"),
+#  text_font_google   = google_font("Montserrat", "300", #"300i"),
+#  code_font_google   = google_font("Droid Mono")
+#)
+solarized_light()
+```
+
+
+
+
+
+
+
+# Multiparental populations
+
+```{r mppfig, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
+source("R/hs_fig.R")
+# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
+```
+
+
+???
+
+
+- start with 8 inbred founder lines  
+- inbred lines are color-coded  
+- each subject represented by one homologous chromosome pair  
+- over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
+
+
+---
+
+
+# Background
+
+- 10,000+ traits with RNA sequencing and mass spectrometry 
+
+- Quantitative trait locus mapping identifies genetic loci that affect measurable traits
+
+- Multiparental populations offer high-resolution QTL mapping
+
+- New analysis tools, such as a pleiotropy test for multiparental populations, are needed 
+
+
+???
+
+- Together, high-dimensional traits and multiparental populations can advance complex trait genetics
+
+---
+
+# Benefits of a new pleiotropy test
+
+- Insights into genetic architecture
+
+- Tool for expression trait hotspot dissection
+
+- Complements mediation analysis
+
+???
+
+
+When trying to identify an intermediate, a pleiotropy test limits the number of mediation analyses by identifying traits that share a QTL
+
+
+
+
+
+
+
+
+---
+
+# `r Citet(myBib, "jiang1995multiple")` test
+
+- Two-parent crosses    
+
+- Applies to two traits that co-map     
+
+- $H_0$: Pleiotropy    
+
+- $H_A$: Two separate QTL    
+
+
+
+---
+
+# `r Citet(myBib, "jiang1995multiple")` test
+
+
+- Perform a two-dimensional two-QTL scan     
+
+    - $vec(Y) = Xvec(B) + vec(E)$     
+    
+    - Calculate likelihood at each ordered pair of positions    
+
+- Calculate likelihood ratio test statistic     
+
+???
+
+- Y: 2 traits  
+- X: genotype probs for 2 markers  
+- B: founder allele effects  
+- E: random errors, iid within each phenotype  
+- vec: stack columns
+
+- 2d scan involves all ordered pairs of markers
+
+
+
+
+---
+
+# Challenges in multiparental populations
+
+- Complex patterns of relatedness    
+
+.soln[Multivariate random effects]
+
+- Multiple founder lines
+
+.soln[Fixed effect for each founder allele]    
+
+
+.pull-left[<img src="figs/cc_founders.png" width="200" height="200" />]
+
+.pull-right[.small[Photo by UNC Computational Genetics]]
+
+
+???
+
+Two challenges occur at the point of relating phenotypes to genotypes
+
+
+
+---
+
+# Test procedure
+
+- Perform a two-dimensional two-QTL scan     
+
+    - $vec(Y) = Xvec(B) + vec(G) + vec(E)$     
+    
+    - Calculate likelihood at each ordered pair of positions    
+
+- Calculate likelihood ratio test statistic     
+
+
+
+???
+
+- $G$: Polygenic random effects that depend on the kinship matrix  
+    
+- $E$: Random errors
+  
+  
+
+
+---
+
+# Test procedure
+
+- Test statistic: $$- \log_{10} \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$    
+
+- Parametric bootstrap to get a $p$-value    
+
+
+???
+
+We fit the bivariate QTL models at all points on the two-dimensional grid. With the likelihoods of those model fits, we calculate a likelihood ratio test statistic.
+
+Approximate the null distribution with the distribution of bootstrap test statistics
+
+---
+
+# Application
+
+- `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` studied 261 Diversity Outbred mice    
+
+- Measured about two dozen behavioral traits
+
+- Two traits map to Chr 8:
+
+    - "hot plate latency" (57 cM)    
+
+    - "percent time in light" (55 cM)
+
+
+???
+
+We applied our test to freely available data from the Chesler laboratory.
+
+
+Do they share a single QTL? 
+
+We examined these two traits because they map to the same region
+
+Hot plate latency is a measure of thermal pain sensitivity
+
+Percent time in light is related to measures of anxiety
+
+
+---
+
+# Percent time in light
+
+
+```{r percentlight, echo = FALSE, out.width = "650px"}
+include_graphics("figs/percent-time-light-coef-lod-Chr8.svg")
+```
+
+???
+
+- X axis is Chr 8 position
+- Y axis is allele effect (on the trait)
+- 8 lines per figure: one for each founder line
+
+---
+
+# Hot plate latency
+
+
+```{r hotplate, echo = FALSE, out.width = "650px"}
+include_graphics("figs/hot-plate-latency-coef-lod-Chr8.svg")
+```
+
+
+
+???
+
+- Distinct allele effects patterns suggest separate QTL
+
+
+---
+
+# LOD definitions
+
+- $$LOD(\lambda_1, \lambda_2) = ll_{10}(\lambda_1, \lambda_2) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
+
+
+- $$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = \max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
+
+
+
+- $$LOD_p(\lambda) = ll_{10}(\lambda, \lambda) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
+
+
+
+
+
+
+---
+
+# Profile LOD
+
+
+```{r profiles, out.width = "650px", echo = FALSE}
+include_graphics("figs/profile.svg", auto_pdf = FALSE)
+```
+
+???
+
+The x axis is Chr 8 position
+
+The y axis is LOD
+
+There are three "traces": one for each trait and one for the pleiotropy hypothesis.
+
+The pleiotropy trace derives from the likelihoods for the pleiotropy models (ie, the diagonal on the grid)
+
+The "hot plate latency" profile LOD trace reveals a broad peak from 55 to 65 cM
+
+The "percent time in light" profile LOD trace displays a sharp peak atop a broad region with higher LOD scores. 
+
+The triangles correspond to the univariate QTL peak positions, while the circles are the profile LOD peak positions.
+
+The two profile LOD traces achieve the same maximum value, which is the test statistic value. 
+
+
+
+---
+
+# Test results
+
+
+- $\log_{10} \Lambda = 1.2$
+
+- $p = 0.11$ (1000 bootstrap samples)
+
+???
+
+- Weak evidence for two separate QTL
+
+    - One QTL affects "distance traveled in light"    
+    
+    - Second QTL affects "hot plate latency"
+
+---
+class: inverse, middle, center
+
+# Power study with local expression QTL
+
+
+---
+
+# Data
+
+- `r Citet(myBib, "keller2018genetic", .opts = list(max.names = 1))` measured pancreatic islet gene expression levels in 378 Diversity Outbred mice
+
+- 80 local expression QTL were identified in a 20-Mb region of Chr 19
+
+    - local: expression trait QTL is near gene position
+
+- Assume that a local expression QTL affects only one local expression trait
+
+
+---
+
+# Design
+
+- Examine power with known expression trait QTL locations
+
+    - Interlocus distance    
+    - Univariate LOD    
+
+- 4 strong, centrally located, local eQTL chosen as "anchor" traits
+
+    - *Asah2, Lipo1, Lipo2, 4933413C19Rik*
+
+- Pairwise pleiotropy tests each involving one anchor and one of 79 other traits
+
+
+---
+
+# Interlocus distance
+
+```{r load-plotly}
+library(plotly)
+```
+
+
+
+```{r make-pp, out.height = "500px"}
+path <- "../keller-2018-chr19-power/Rmd"
+read_csv(file.path(path, "2018-11-26_lrt-tibble.csv")) -> r3104
+read_csv(file.path(path, "2018-12-03_lrt-tibble-run3105.csv")) -> r3105
+read_csv(file.path(path, "2018-12-03_lrt-tibble-run3106.csv")) -> r3106
+read_csv(file.path(path, "2018-12-03_lrt-tibble-run3107.csv")) -> r3107
+bind_rows(r3104, r3105, r3106, r3107) -> rr
+
+
+## ------------------------------------------------------------------------
+load("../keller-2018-chr19-power/data/Attie_DO378_eQTL_viewer_v1.Rdata")
+
+
+## ------------------------------------------------------------------------
+foo <- dataset.islet.rnaseq$annots %>%
+  select(gene_id, symbol, start, end, middle) 
+rr2 <- foo %>% 
+  right_join(rr, by = c("gene_id" = "gene1")) %>%
+  rename(gene1_symbol = symbol, gene1 = gene_id, gene1_start = start, gene1_end = end, gene1_middle = middle) %>%
+  left_join(foo, by = c("gene2" = "gene_id")) %>%
+  rename(gene2_symbol = symbol, gene2_start = start, gene2_end = end, gene2_middle = middle)
+
+
+## ------------------------------------------------------------------------
+bar <- dataset.islet.rnaseq$lod.peaks %>%
+  filter(chrom == 19)
+rr3 <- bar %>%
+  right_join(rr2, by = c("annot.id" = "gene1")) %>%
+  rename(gene1 = annot.id, gene1_marker.id = marker.id, gene1_pos = pos, gene1_lod = lod) %>%
+  left_join(bar, by = c("gene2" = "annot.id")) %>%
+  rename(gene2_marker.id = marker.id, gene2_pos = pos, gene2_lod = lod) %>%
+  select(- chrom.x, - chrom.y)
+
+
+## ------------------------------------------------------------------------
+
+
+## ------------------------------------------------------------------------
+nodup <- rr3 %>%
+  filter(!duplicated(gene2)) %>%
+  arrange(desc(gene2_lod))
+
+
+
+
+## ------------------------------------------------------------------------
+pp <- rr3 %>%
+  mutate(gene2_symbol_factor = factor(gene2_symbol, levels = nodup$gene2_symbol, labels = paste0(nodup$gene2_symbol, " (", round(nodup$gene2_lod, 1), ")"))) %>% 
+  filter(gene2_symbol == "Asah2") %>%
+  ggplot() + geom_point(aes(x = gene1_middle, y = lrt, colour = gene1_lod, text = paste("gene1_symbol: ", gene1_symbol, " "))) +
+  ggtitle("Asah2") + 
+  geom_vline(aes(xintercept = gene2_middle)) + 
+  xlab("Chromosome 19 position") + 
+  ylab("Pleiotropy v separate QTL test statistic") + 
+  scale_color_gradient(low = "#500707", high = "#ee0909", name = "Trait LOD")
+```
+
+```{r ggplotly, out.height = "500px", out.width = "700px"}
+ggplotly(pp, tooltip = c("text"))
+```
+
+
+
+
+---
+
+# Interlocus distance
+
+```{r, out.height = "500px"}
+include_graphics("figs/lrt-v-middle-of-gene-slides.svg", auto_pdf = FALSE)
+```
+
+
+
+---
+
+# Univariate LOD
+
+```{r, out.height="500px"}
+include_graphics("figs/lrt-v-univariate-lod-slides.svg", auto_pdf = FALSE)
+```
+
+
+
+---
+
+# Conclusions
+
+- $\uparrow$ Pleiotropy test statistics
+   - $\uparrow$ Interlocus distance
+   - $\uparrow$ Univariate LOD
+
+
+
+---
+class: inverse, middle, center
+
+# qtl2pleio R package
+
+
+---
+
+# qtl2pleio R package
+
+- Functions for $d$-variate, $d$-QTL scan & profile LOD plots
+
+- Uses C++ for matrix calculations (via Rcpp and RcppEigen)
+
+- Uses `gemma2` R implementation of GEMMA EM algorithm for multivariate random effects
+
+- Unit tests, vignettes, and version control
+
+
+???
+
+- unit tests to ensure accurate calculations
+
+- vignettes on analyzing a pair of traits & on cluster computing for bootstrap test
+
+
+---
+
+# Summary
+
+
+1. Background  
+2. Methods  
+3. Applications  
+    a. Pleiotropy testing and mediation analysis  
+    b. Power in pleiotropy testing  
+    c. Microbiome case study  
+4. Software  
+5. Conclusions
+
+
+
+
+
+---
+
+# References
+
+
+
+```{r bib, results = 'asis'}
+foo <- PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
+```
+
+
+
+
