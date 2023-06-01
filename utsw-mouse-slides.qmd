@@ -2,10 +2,10 @@
 title: "Testing pleiotropy in multiparental populations"
 author: "Frederick Boehm"
 date: "June 13, 2023"
-bibliography: research.bib
 format: 
   revealjs:
     theme: [beige]
+    css: slides.css
 ---
 
 ```{scss}
@@ -60,7 +60,7 @@ myBib <- ReadBib("research.bib", check = FALSE)
 
 
 
-
+# QTL Mapping in Multiparental Populations
 
 ## Multiparental populations
 
@@ -83,7 +83,7 @@ source("R/hs_fig.R")
 ---
 
 
-## Background
+## Motivation
 
 - 10,000+ traits with RNA sequencing and mass spectrometry 
 
