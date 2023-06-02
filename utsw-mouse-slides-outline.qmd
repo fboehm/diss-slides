@@ -49,13 +49,19 @@ format: gfm
 
 1. [Multivariate QTL mapping in DO mice & testing pleiotropy vs. separate QTL](#multivariate-qtl-mapping-do-mice)
 
-- Take figures from my paper & poster (on overleaf)
+- Take figures from my paper & supplemental material & poster (on overleaf)
 - Describe two traits from Chesler lab papers
 - Show figures to describe traits (light box and hot plate latency)
 - Describe what was known about two traits & univariate QTL mapping before we did my test
     - Univariate QTL mapping results for each trait
     - Allelic effect plots for each trait in region of interest
     - Correlation between traits
-    -   
-
+    - Univariate p-values for each trait
+    - How was *Hydin* determined to be the gene underlying the QTL? (see Chesler lab paper)  
+- Describe multivariate QTL mapping
+- Describe test for pleiotropy vs. separate QTL
+    - Describe null and alternative hypotheses
+    - Describe test statistic
+    - Describe bootstrap test to get p-values
+    - 
 
