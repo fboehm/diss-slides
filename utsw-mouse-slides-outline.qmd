@@ -1,0 +1,61 @@
+---
+title: "Outline"
+format: gfm
+---
+
+
+1. [Introduction](#introduction)
+
+- Motivate QTL mapping & QTL mapping in mice
+    - QTL Mapping to identify genes that contribute to complex traits
+    - QTL Mapping in mice
+        - Why mice?
+        - Evolutionary conservation of biology in different species
+        - Inferences subject to extent of shared biology
+        - Environmental control: diet, housing, etc.
+        - Ethics of interventions & invasive phenotyping in humans vs mice
+        - Genetic control: inbred strains, recombinant inbred strains, etc.
+
+2. [QTL mapping in two-parent crosses](#two-parent-crosses)
+
+- Demonstrate a F2 cross & QTL mapping of a trait in F2
+    - Draw two inbred strains & F1 cross & F2 cross
+    - Show distribution of trait in F2 - perhaps use data & figure from Karl's book??? Does KB still have a github repo with code for book? qtlbook???
+    - Show distribution of trait in F2 with QTL genotypes
+
+
+3. [QTL mapping in multi-parent crosses](#multi-parent-crosses)
+
+- Motivate multi-parent crosses vs. two-parent crosses
+- Motivate DO 
+- Motivate deep phenotyping of DO mice as a means to understand biology
+
+4. [Univariate QTL mapping in DO mice](#qtl-mapping-do-mice)
+
+- Demonstrate univariate QTL mapping in DO mice
+    - Discuss data & structures for input to qtl2 software
+        - Genotype data: collection of 3-dimensional arrays (one per chromosome)
+        - How do we obtain genotype probabilities object
+        - How does the HMM work? Can I explain it? Maybe make bonus slides to explain it?
+        - Phenotype data & transformation - why & how?
+        - Covariate data
+        - Kinship matrix: matrix per chromosome (Leave one chromosome out)
+
+    - Show distribution of trait in DO mice
+    - Show distribution of trait in DO mice with QTL genotypes
+    - Show QTL mapping results
+    - Show QTL mapping results with QTL genotypes
+    - Show QTL mapping results with QTL genotypes & founder haplotypes
+
+1. [Multivariate QTL mapping in DO mice & testing pleiotropy vs. separate QTL](#multivariate-qtl-mapping-do-mice)
+
+- Take figures from my paper & poster (on overleaf)
+- Describe two traits from Chesler lab papers
+- Show figures to describe traits (light box and hot plate latency)
+- Describe what was known about two traits & univariate QTL mapping before we did my test
+    - Univariate QTL mapping results for each trait
+    - Allelic effect plots for each trait in region of interest
+    - Correlation between traits
+    -   
+
+
