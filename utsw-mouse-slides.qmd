@@ -6,6 +6,8 @@ date-format: long
 embed-resources: true
 format: 
     revealjs:
+        transition: "slide"
+        slide-number: "c/t"
         title-slide-attributes: 
             data-background-image: "figs/vitruvian-mouse-eleni.png"
             data-background-size: "contain"
