@@ -47,7 +47,7 @@ format: gfm
     - Show QTL mapping results with QTL genotypes
     - Show QTL mapping results with QTL genotypes & founder haplotypes
 
-1. [Multivariate QTL mapping in DO mice & testing pleiotropy vs. separate QTL](#multivariate-qtl-mapping-do-mice)
+5. [Multivariate QTL mapping in DO mice & testing pleiotropy vs. separate QTL](#multivariate-qtl-mapping-do-mice)
 
 - Take figures from my paper & supplemental material & poster (on overleaf)
 - Describe two traits from Chesler lab papers
@@ -62,6 +62,20 @@ format: gfm
 - Describe test for pleiotropy vs. separate QTL
     - Describe null and alternative hypotheses
     - Describe test statistic
-    - Describe bootstrap test to get p-values
-    - 
+    - Describe parametric bootstrap test to get p-values
+
+6. [qtl2pleio R package](#qtl2pleio-R-package)
+
+- Describe qtl2pleio R package
+    - Documentation website
+    - Vignettes
+    - GitHub repo
+    - on CRAN, too
+    - uses `Roxygen2` for documentation
+    - uses `testthat` for unit tests
+    - uses Travis CI for continuous integration
+    - uses codecov for code coverage
+    - uses `pkgdown` for documentation website
+    - JOSS publication
+
 

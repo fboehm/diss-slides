@@ -2,10 +2,14 @@
 title: "Testing pleiotropy in multiparental populations"
 author: "Frederick Boehm"
 date: "June 13, 2023"
+date-format: long
+embed-resources: true
 format: 
-  revealjs:
-    theme: [beige]
-    css: slides.css
+    revealjs:
+        title-slide-attributes: 
+            data-background-image: "figs/vitruvian-mouse-eleni.png"
+            data-background-size: "contain"
+            data-background-opacity: "0.2" 
 ---
 
 ```{scss}
