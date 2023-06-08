@@ -62,8 +62,38 @@ myBib <- ReadBib("research.bib", check = FALSE)
 
 
 
+# Quantitative Trait Locus (QTL) Mapping 
 
 
+## Motivation
+
+- Variations in quantitative traits are due to genetic and environmental factors  
+- Knowledge of the number, locations, effects, and identities of these factors can contribute to new biological insights  
+    - new drugs  
+    - improve breeding in agriculture  
+    - better understanding of natural selection   
+
+
+## What is QTL mapping?
+
+- A statistical method to identify genetic factors, or loci, that affect a quantitative trait  
+- Consider each marker, one at a time, and test whether it affects the trait  
+
+## QTL mapping in two-parent crosses
+
+- Cross two inbred lines to produce a F1 population  
+- Cross F1 subjects to produce a F2 population    
+- Genotype F2 subjects at many markers  
+- Phenotype F2 subjects for the trait of interest  
+- Test each marker for association with the trait  
+
+
+
+
+
+::: {.notes}
+
+:::
 
 
 # QTL Mapping in Multiparental Populations
