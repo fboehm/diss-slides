@@ -6,6 +6,9 @@ date-format: long
 embed-resources: true
 format: 
     revealjs:
+        progress: true
+        slide-tone: true
+        auto-stretch: false
         transition: "slide"
         slide-number: "c/t"
         title-slide-attributes: 
@@ -13,6 +16,10 @@ format:
             data-background-size: "contain"
             data-background-opacity: "0.2" 
 ---
+
+# Quantitative Trait Locus (QTL) Mapping 
+
+
 
 ```{scss}
 .soln {
@@ -61,8 +68,6 @@ myBib <- ReadBib("research.bib", check = FALSE)
 ```
 
 
-
-# Quantitative Trait Locus (QTL) Mapping 
 
 
 ## Motivation
