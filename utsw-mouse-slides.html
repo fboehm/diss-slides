@@ -11,7 +11,6 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Frederick Boehm">
-  <meta name="dcterms.date" content="2023-06-13">
   <title>Testing pleiotropy vs.&nbsp;separate QTL in Multiparental Populations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,11 +29,32 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
   </style>
   <link rel="stylesheet" href="utsw-mouse-slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="utsw-mouse-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="utsw-mouse-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -336,7 +356,7 @@ Frederick Boehm
 </div>
 </div>
 
-  <p class="date">June 13, 2023</p>
+  <p class="date">Tuesday, June 13, 2023</p>
 </section>
 <section>
 <section id="quantitative-trait-locus-qtl-mapping" class="title-slide slide level1 center">
@@ -345,9 +365,6 @@ Frederick Boehm
 <style type="text/css">
 .soln{color:red;font-style:italic}.red{color:red}.small{font-size:16px}.tiny{font-size:10px}
 </style>
-</div>
-<div class="cell">
-
 </div>
 </section>
 <section id="motivation" class="slide level2">
@@ -487,8 +504,8 @@ Frederick Boehm
           display:block!important;
       }</style></aside>
 </section>
-<section id="jiang-and-zeng-1995-test" class="slide level2">
-<h2>Jiang and Zeng (1995) test</h2>
+<section id="jiang1995multiple-test" class="slide level2">
+<h2><span class="citation" data-cites="jiang1995multiple">Jiang and Zeng (<a href="#/references" role="doc-biblioref" onclick="">1995</a>)</span> test</h2>
 <ul>
 <li><p>Two-parent crosses</p></li>
 <li><p>Applies to two traits that co-map</p></li>
@@ -496,8 +513,8 @@ Frederick Boehm
 <li><p><span class="math inline">\(H_A\)</span>: Two separate QTL</p></li>
 </ul>
 </section>
-<section id="jiang-and-zeng-1995-test-1" class="slide level2">
-<h2>Jiang and Zeng (1995) test</h2>
+<section id="jiang1995multiple-test-1" class="slide level2">
+<h2><span class="citation" data-cites="jiang1995multiple">Jiang and Zeng (<a href="#/references" role="doc-biblioref" onclick="">1995</a>)</span> test</h2>
 <ul>
 <li><p>Perform a two-dimensional two-QTL scan</p></li>
 <li><p><span class="math inline">\(vec(Y) = Xvec(B) + vec(E)\)</span></p></li>
@@ -548,8 +565,6 @@ Frederick Boehm
 <div class="soln">
 <p>Fixed effect for each founder allele</p>
 </div>
-<p><img src="figs/cc_founders.png" width="200" height="200"></p>
-<p>Photo by UNC Computational Genetics</p>
 <aside class="notes">
 <p>Two challenges occur at the point of relating phenotypes to genotypes</p>
 <style type="text/css">
@@ -623,15 +638,14 @@ Frederick Boehm
 <h1>Application</h1>
 
 </section>
-<section id="logan-et-al.-2013-and-recla-et-al.-2014-studies" class="slide level2">
-<h2>Logan et al.&nbsp;(2013) and Recla et al.&nbsp;(2014) Studies</h2>
+<section id="logan2013high-recla2014precise" class="slide level2">
+<h2><span class="citation" data-cites="logan2013high">Logan et al. (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span> &amp; <span class="citation" data-cites="recla2014precise">Recla et al. (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span></h2>
 <ul>
 <li><p>261 Diversity Outbred mice</p></li>
 <li><p>Measured about two dozen behavioral traits</p></li>
 </ul>
-<p><img data-src="lightdarkbox.jpg" class="absolute" style="left: 50px; bottom: 100px; width: 350px; height: 300px; "></p>
-<p><img data-src="hotplate.png" class="absolute" style="bottom: 100px; right: 50px; width: 350px; height: 300px; "></p>
-<p><sup>1</sup></p>
+<p><img data-src="figs/lightdarkbox.jpg" class="absolute" style="left: 50px; bottom: 100px; width: 350px; height: 300px; "></p>
+<p><img data-src="figs/hotplate.png" class="absolute" style="bottom: 100px; right: 50px; width: 350px; height: 300px; "></p>
 <aside class="notes">
 <ul>
 <li><p>Two traits map to Chr 8:</p>
@@ -656,7 +670,7 @@ Frederick Boehm
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Wong et al.&nbsp;(2015) </p></li></ol></aside></section>
+</section>
 <section id="percent-time-in-light" class="slide level2">
 <h2>Percent time in light</h2>
 <div class="cell">
@@ -840,12 +854,103 @@ Frederick Boehm
 <p><img data-src="figs/power-curves.svg"></p>
 </div>
 </div>
-<p>::: {.notes}</p>
-<div class="footer footer-default">
+<aside class="notes">
 
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="qtl2pleio-r-package" class="slide level2">
+<h2><code>qtl2pleio</code> R package</h2>
+<ul>
+<li><p>Functions for <span class="math inline">\(d\)</span>-variate, <span class="math inline">\(d\)</span>-QTL scan &amp; profile LOD plots</p></li>
+<li><p>Uses C++ for matrix calculations (via Rcpp and RcppEigen)</p></li>
+<li><p>Uses <code>gemma2</code> R implementation of GEMMA EM algorithm for multivariate random effects</p></li>
+<li><p>Unit tests, vignettes, and version control</p></li>
+<li><p>Open source development on GitHub</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="figs/qtl2pleio-github-screenshot.png"></p>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li><p>unit tests to ensure accurate calculations</p></li>
+<li><p>vignettes on analyzing a pair of traits &amp; on cluster computing for bootstrap test</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="qtl2pleio-r-package-1" class="slide level2">
+<h2><code>qtl2pleio</code> R package</h2>
+<ul>
+<li><code>qtl2pleio</code> R package: <a href="https://fboehm.us/software/qtl2pleio/" class="uri">https://fboehm.us/software/qtl2pleio/</a></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="figs/qtl2pleio-pkgdown-site-screenshot.png"></p>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>Also available on CRAN</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<p>class: inverse, middle, center</p>
+</section></section>
+<section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank you!</h1>
+
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+<div class="footer footer-default">
+<p>Frederick Boehm (frederick.boehm@gmail.com) https://fboehm.us/</p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-jiang1995multiple" class="csl-entry" role="doc-biblioentry">
+Jiang, Changjian, and Zhao-Bang Zeng. 1995. <span>“Multiple Trait Analysis of Genetic Mapping for Quantitative Trait Loci.”</span> <em>Genetics</em> 140 (3): 1111–27.
+</div>
+<div id="ref-logan2013high" class="csl-entry" role="doc-biblioentry">
+Logan, Ryan W, Raymond F Robledo, Jill M Recla, Vivek M Philip, Jason A Bubier, Jeremy J Jay, Carter Harwood, et al. 2013. <span>“High-Precision Genetic Mapping of Behavioral Traits in the Diversity Outbred Mouse Population.”</span> <em>Genes, Brain and Behavior</em> 12 (4): 424–37.
+</div>
+<div id="ref-recla2014precise" class="csl-entry" role="doc-biblioentry">
+Recla, Jill M, Raymond F Robledo, Daniel M Gatti, Carol J Bult, Gary A Churchill, and Elissa J Chesler. 2014. <span>“Precise Genetic Mapping and Integrative Bioinformatics in Diversity Outbred Mice Reveals Hydin as a Novel Pain Gene.”</span> <em>Mammalian Genome</em> 25 (5-6): 211–22.
+</div>
 </div>
 </section></section>
-
     </div>
   </div>
 
@@ -856,6 +961,7 @@ Frederick Boehm
   <script src="utsw-mouse-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="utsw-mouse-slides_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="utsw-mouse-slides_files/libs/revealjs/plugin/quarto-tone/tone.js"></script>
   <script src="utsw-mouse-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
@@ -878,7 +984,8 @@ Frederick Boehm
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1049,7 +1156,7 @@ Frederick Boehm
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoTone, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoTone, QuartoSupport,
 
           RevealMath,
           RevealNotes,

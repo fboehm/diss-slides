@@ -2,11 +2,14 @@
 title: "Testing pleiotropy vs. separate QTL in Multiparental Populations"
 author: Frederick Boehm
 date: 'June 13, 2023'
-date-format: long
+date-format: full
+bibliography: research.bib
 format:
     revealjs:
+        footer: "Frederick Boehm (frederick.boehm@gmail.com)     https://fboehm.us/"
         progress: true
         slide-tone: true
+        chalkboard: true
         auto-stretch: false
         transition: "slide"
         slide-number: "c/t"
@@ -51,20 +54,6 @@ knitr::opts_chunk$set(#dev="svg",
                       warning=FALSE, message=FALSE)
 ```
 
-
-```{r load_refs, echo=FALSE, cache=FALSE}
-library(RefManageR)
-BibOptions(check.entries = FALSE, 
-           bib.style = "authoryear", 
-           cite.style = 'authoryear', 
-           style = "markdown",
-           hyperlink = FALSE, 
-           dashed = FALSE, 
-           longnamesfirst = FALSE,
-           max.names = 2,
-           bibpunct = c(" (", ") ", ",", ",", " and ", " "))
-myBib <- ReadBib("research.bib", check = FALSE)
-```
 
 
 
@@ -234,7 +223,7 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 ---
 
-## `r Citet(myBib, "jiang1995multiple")` test
+## @jiang1995multiple test
 
 - Two-parent crosses    
 
@@ -248,7 +237,7 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 ---
 
-## `r Citet(myBib, "jiang1995multiple")` test
+## @jiang1995multiple test
 
 
 - Perform a two-dimensional two-QTL scan     
@@ -305,9 +294,7 @@ Fixed effect for each founder allele
 :::
 
 
-<img src="figs/cc_founders.png" width="200" height="200" />
 
-Photo by UNC Computational Genetics
 
 
 ::: {.notes}
@@ -364,19 +351,18 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 ---
 
-## `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` Studies
+## @logan2013high & @recla2014precise
 
 - 261 Diversity Outbred mice    
 
 - Measured about two dozen behavioral traits
 
-![](lightdarkbox.jpg){.absolute bottom=100 left=50 width="350" height="300"}
+![](figs/lightdarkbox.jpg){.absolute bottom=100 left=50 width="350" height="300"}
 
-![](hotplate.png){.absolute bottom=100 right=50 width="350" height="300"}
+![](figs/hotplate.png){.absolute bottom=100 right=50 width="350" height="300"}
 
 
 
-^[`r Citet(myBib, c("wong2015restoration"), .opts = list(max.names = 1))`]
 
 
 
@@ -617,22 +603,20 @@ include_graphics("figs/qtl2pleio-pkgdown-site-screenshot.png")
 :::
 
 
----
-
-## Summary
-
 
 
 
 ---
+
 class: inverse, middle, center
 
 # Thank you!
 
-<frederick.boehm@gmail.com>
 
-<https://fboehm.us>
 
+---
+
+## References
 
 
 
