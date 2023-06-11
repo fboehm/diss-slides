@@ -1,20 +1,19 @@
 ---
-title: "Testing pleiotropy in multiparental populations"
-author: "Frederick Boehm"
-date: "June 13, 2023"
+title: "Testing pleiotropy vs. separate QTL in Multiparental Populations"
+author: Frederick Boehm
+date: 'June 13, 2023'
 date-format: long
-embed-resources: true
-format: 
+format:
     revealjs:
         progress: true
         slide-tone: true
         auto-stretch: false
         transition: "slide"
         slide-number: "c/t"
-        title-slide-attributes: 
+        title-slide-attributes:
             data-background-image: "figs/vitruvian-mouse-eleni.png"
             data-background-size: "contain"
-            data-background-opacity: "0.2" 
+            data-background-opacity: "0.2"
 ---
 
 # Quantitative Trait Locus (QTL) Mapping 
@@ -78,35 +77,108 @@ myBib <- ReadBib("research.bib", check = FALSE)
     - improve breeding in agriculture  
     - better understanding of natural selection   
 
+---
 
 ## What is QTL mapping?
 
 - A statistical method to identify genetic factors, or loci, that affect a quantitative trait  
 - Consider each marker, one at a time, and test whether it affects the trait  
 
+---
+
 ## QTL mapping in two-parent crosses
 
+
+```{r}
+##############################
+# The intercross
+##############################
+
+library(broman)
+library(simcross)
+
+color <- brocolors("crayons")[c("Cornflower", "Blush")]
+source(here::here("R/colors.R"))
+#bgcolor <- "white"
+#par(fg="white", bty="n", bg=bgcolor)
+#par(fg = "white", bty = "n" )
+par(bty="n")
+par(mar=rep(0, 4))
+
+plot(0,0,xlim=c(0,864),ylim=c(0,480),xaxt="n",yaxt="n",xlab="",ylab="",type="n")
+rect(c(300,328),c(480,480),c(310,338),c(385,385),col=color[1],border=color[1], lend=1, ljoin=1)
+rect(c(526,554),c(480,480),c(536,564),c(385,385),col=color[2],border=color[2], lend=1, ljoin=1)
+
+points(432,440,pch=4,cex=2.5,lwd=2)
+segments(432,400,432,340,lwd=2)
+segments(319,340,545,340,lwd=2)
+arrows(c(319,545),c(340,340),c(319,545),c(300,300),lwd=2,len=0.1)
+
+text(300-25,(480+385)/2,expression(P[1]),cex=2,adj=c(1,0.5))
+text(564+25,(480+385)/2,expression(P[2]),cex=2,adj=c(0,0.5))
+
+rect(300,287,310,192,col=color[1],border=color[1], lend=1, ljoin=1)
+rect(328,287,338,192,col=color[2],border=color[2], lend=1, ljoin=1)
+rect(526,287,536,192,col=color[1],border=color[1], lend=1, ljoin=1)
+rect(554,287,564,192,col=color[2],border=color[2], lend=1, ljoin=1)
+
+points(432,247,pch=4,cex=2.5,lwd=2)
+segments(432,207,432,147,lwd=2)
+segments(57,147,849,147,lwd=2)
+arrows(seq(57,849,by=88),rep(147,10),seq(57,849,by=88),rep(107,10),lwd=2,len=0.1)
+
+text(300-25,(287+192)/2,expression(F[1]),cex=2,adj=c(1,0.5))
+text(564+25,(287+192)/2,expression(F[1]),cex=2,adj=c(0,0.5))
+
+f1 <- create_parent(100,c(1,2))
+set.seed(994)
+f2 <- vector("list",10)
+for(i in 1:10) f2[[i]] <- cross(f1,f1,m=10)
+
+xloc <- 38
+mult <- 95/max(f2[[1]]$mat$locations)
+for(i in 1:10) {
+    rect(xloc,0,xloc+10,95,   col=color[1],border=color[1], lend=1, ljoin=1)
+    rect(xloc+28,0,xloc+38,95,col=color[1],border=color[1], lend=1, ljoin=1)
+
+    f2m <- f2[[i]]$mat
+    f2m$locations <- c(0, f2m$locations)
+    for(j in 2:length(f2m$locations)) {
+        if(f2m$alleles[j-1]==2) {
+            rect(xloc,f2m$locations[j]*mult,xloc+10,f2m$locations[j-1]*mult,col=color[2],border=color[2], lend=1, ljoin=1)
+        }
+    }
+    f2p <- f2[[i]]$pat
+    f2p$locations <- c(0, f2p$locations)
+    for(j in 2:length(f2p$locations)) {
+        if(f2p$alleles[j-1]==2) {
+            rect(xloc+28,f2p$locations[j]*mult,xloc+38,f2p$locations[j-1]*mult,col=color[2],border=color[2], lend=1, ljoin=1)
+        }
+    }
+    xloc <- xloc+38+50
+}
+text(38-25,95/2,expression(F[2]),cex=2,adj=c(1,0.5))
+```
+
+::: {.notes}
 - Cross two inbred lines to produce a F1 population  
 - Cross F1 subjects to produce a F2 population    
 - Genotype F2 subjects at many markers  
 - Phenotype F2 subjects for the trait of interest  
 - Test each marker for association with the trait  
-
-
-
-
-
-::: {.notes}
-
 :::
 
+---
 
 # QTL Mapping in Multiparental Populations
+
+
+---
 
 ## Multiparental populations
 
 ```{r mppfig, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
-source("R/hs_fig.R")
+source(here::here("R/hs_fig.R"))
 # https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
 ```
 
@@ -127,8 +199,6 @@ source("R/hs_fig.R")
 ## Motivation
 
 - 10,000+ traits with RNA sequencing and mass spectrometry 
-
-- Quantitative trait locus mapping identifies genetic loci that affect measurable traits
 
 - Multiparental populations offer high-resolution QTL mapping
 
@@ -183,22 +253,37 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 - Perform a two-dimensional two-QTL scan     
 
-    - $vec(Y) = Xvec(B) + vec(E)$     
+- $vec(Y) = Xvec(B) + vec(E)$     
     
-    - Calculate likelihood at each ordered pair of positions    
+ 
+```{r, grid}
+# Create an empty plot with the desired range
+limits <- c(0.5, 5.5)
+plot(x = 1:5, y = 1:5, type = "n", xlab = "Trait 1", ylab = "Trait 2", xlim = limits, ylim = limits)
 
-- Calculate likelihood ratio test statistic     
+# Define a vector of colors
+colors <- rep("red", 25)
+green_indices <- c(1, 7, 13, 19, 25)
+colors[green_indices] <- "green"
+# Add points to represent the grid with different colors
+points(rep(1:5, 5), rep(1:5, each = 5), pch = 19, cex = 2, col = colors)
+```
+
 
 
 ::: {.notes}
 
-- Y: 2 traits  
-- X: genotype probs for 2 markers  
+- Y: n by 2 matrix for 2 traits  
+- X: 2n by 2 block diagonal matrix genotype probabilities for 2 markers  
 - B: founder allele effects  
 - E: random errors, iid within each phenotype  
 - vec: stack columns
 
 - 2d scan involves all ordered pairs of markers
+
+- Calculate likelihood at each ordered pair of positions    
+
+- Calculate likelihood ratio test statistic     
 
 :::
 
@@ -220,9 +305,9 @@ Fixed effect for each founder allele
 :::
 
 
-.pull-left[<img src="figs/cc_founders.png" width="200" height="200" />]
+<img src="figs/cc_founders.png" width="200" height="200" />
 
-.pull-right[.small[Photo by UNC Computational Genetics]]
+Photo by UNC Computational Genetics
 
 
 ::: {.notes}
@@ -237,20 +322,22 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 - Perform a two-dimensional two-QTL scan     
 
-    - $vec(Y) = Xvec(B) + vec(G) + vec(E)$     
+- $vec(Y) = Xvec(B) + vec(G) + vec(E)$     
     
-    - Calculate likelihood at each ordered pair of positions    
-
-- Calculate likelihood ratio test statistic     
-
-
+```{r, grid_again}
+<<grid>>
+```
 
 ::: {.notes}
 
 - $G$: Polygenic random effects that depend on the kinship matrix  
     
 - $E$: Random errors
-  
+
+- Calculate likelihood at each ordered pair of positions    
+
+- Calculate likelihood ratio test statistic     
+
 :::  
 
 
@@ -273,11 +360,28 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 ---
 
-## Application
+# Application
 
-- `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` studied 261 Diversity Outbred mice    
+---
+
+## `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` Studies
+
+- 261 Diversity Outbred mice    
 
 - Measured about two dozen behavioral traits
+
+![](lightdarkbox.jpg){.absolute bottom=100 left=50 width="350" height="300"}
+
+![](hotplate.png){.absolute bottom=100 right=50 width="350" height="300"}
+
+
+
+^[`r Citet(myBib, c("wong2015restoration"), .opts = list(max.names = 1))`]
+
+
+
+
+::: {.notes}
 
 - Two traits map to Chr 8:
 
@@ -285,14 +389,10 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
     - "percent time in light" (55 cM)
 
-
-
-::: {.notes}
-
 We applied our test to freely available data from the Chesler laboratory.
 
 
-Do they share a single QTL? 
+Do the two traits share a single QTL? 
 
 We examined these two traits because they map to the same region
 
@@ -339,6 +439,19 @@ include_graphics("figs/hot-plate-latency-coef-lod-Chr8.svg")
 
 :::
 
+---
+
+## Correlation between traits
+
+```{r}
+include_graphics("figs/scatter-1.png")
+```
+
+::: {.notes}
+
+- Correlation coefficient estimate is $-0.15$
+
+:::
 
 ---
 
@@ -407,21 +520,52 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 :::
 
 ---
+
+## Parametric bootstrap test
+
+
+
+::: {.notes}
+
+- Simulate data under the null hypothesis  
+- Calculate test statistic for each simulated dataset  
+- Determine proportion of simulated test statistics that exceed observed test statistic  
+
+:::
+
+---
 class: inverse, middle, center
 
-# Power study with local expression QTL
-
+# Simulations
 
 ---
 
+## Assess Type I Error Rate
 
-## Conclusions
+```{r}
+include_graphics("figs/table-sims.png")
+```
 
-- $\uparrow$ Pleiotropy test statistics
-   - $\uparrow$ Interlocus distance
-   - $\uparrow$ Univariate LOD
+::: {.notes}
 
 
+
+:::
+
+---
+
+## Assessing Power
+
+```{r}
+include_graphics("figs/power-curves.svg")
+```
+
+::: {.notes}
+
+
+
+
+:::
 
 ---
 class: inverse, middle, center
@@ -431,15 +575,22 @@ class: inverse, middle, center
 
 ---
 
-## qtl2pleio R package
+## `qtl2pleio` R package
 
-- Functions for $d$-variate, $d$-QTL scan & profile LOD plots
+- Functions for $d$-variate, $d$-QTL scan & profile LOD plots  
 
-- Uses C++ for matrix calculations (via Rcpp and RcppEigen)
+- Uses C++ for matrix calculations (via Rcpp and RcppEigen)  
 
-- Uses `gemma2` R implementation of GEMMA EM algorithm for multivariate random effects
+- Uses `gemma2` R implementation of GEMMA EM algorithm for multivariate random effects  
 
-- Unit tests, vignettes, and version control
+- Unit tests, vignettes, and version control  
+
+- Open source development on GitHub  
+
+```{r}
+include_graphics("figs/qtl2pleio-github-screenshot.png")
+```
+
 
 
 ::: {.notes}
@@ -451,26 +602,40 @@ class: inverse, middle, center
 
 ---
 
+## `qtl2pleio` R package 
+
+- `qtl2pleio` R package: <https://fboehm.us/software/qtl2pleio/>
+
+```{r}
+include_graphics("figs/qtl2pleio-pkgdown-site-screenshot.png")
+```
+
+::: {.notes}
+
+- Also available on CRAN  
+
+:::
+
+
+---
+
 ## Summary
-
-
-1. Background  
-2. Methods  
-3. Applications  
-    a. Pleiotropy testing and mediation analysis  
-    b. Power in pleiotropy testing  
-    c. Microbiome case study  
-4. Software  
-5. Conclusions
-
 
 
 
 
 ---
+class: inverse, middle, center
 
-## References
+# Thank you!
 
+<frederick.boehm@gmail.com>
+
+<https://fboehm.us>
+
+---
+
+## References {visibility="uncounted"}
 
 
 ```{r bib, results = 'asis'}
