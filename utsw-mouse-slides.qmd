@@ -633,14 +633,6 @@ class: inverse, middle, center
 
 <https://fboehm.us>
 
----
-
-## References {visibility="uncounted"}
-
-
-```{r bib, results = 'asis'}
-foo <- PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
-```
 
 
 
