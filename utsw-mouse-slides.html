@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Frederick Boehm">
-  <title>Testing pleiotropy vs.&nbsp;separate QTL in Multiparental Populations</title>
+  <title>Testing Pleiotropy vs.&nbsp;Separate QTL in Multiparental Populations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -346,7 +346,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="figs/vitruvian-mouse-eleni.png" data-background-opacity="0.2" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Testing pleiotropy vs.&nbsp;separate QTL in Multiparental Populations</h1>
+  <h1 class="title">Testing Pleiotropy vs.&nbsp;Separate QTL in Multiparental Populations</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -357,6 +357,10 @@ Frederick Boehm
 </div>
 
   <p class="date">Tuesday, June 13, 2023</p>
+</section>
+<section class="slide level2">
+
+<p>class: inverse, middle, center</p>
 </section>
 <section>
 <section id="quantitative-trait-locus-qtl-mapping" class="title-slide slide level1 center">
@@ -407,8 +411,7 @@ Frederick Boehm
 </li>
 <li>Phenotype F2 subjects for the trait of interest<br>
 </li>
-<li>Test each marker for association with the trait<br>
-</li>
+<li>Test each marker for association with the trait</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -424,6 +427,7 @@ Frederick Boehm
 </section>
 <section class="slide level2">
 
+<p>class: inverse, middle, center</p>
 </section></section>
 <section>
 <section id="qtl-mapping-in-multiparental-populations" class="title-slide slide level1 center">
@@ -632,6 +636,7 @@ Frederick Boehm
 </section>
 <section class="slide level2">
 
+<p>class: inverse, middle, center</p>
 </section></section>
 <section>
 <section id="application" class="title-slide slide level1 center">
@@ -645,7 +650,7 @@ Frederick Boehm
 <li><p>Measured about two dozen behavioral traits</p></li>
 </ul>
 <p><img data-src="figs/lightdarkbox.jpg" class="absolute" style="left: 50px; bottom: 100px; width: 350px; height: 300px; "></p>
-<p><img data-src="figs/hotplate.png" class="absolute" style="bottom: 100px; right: 50px; width: 350px; height: 300px; "></p>
+<p><img data-src="figs/hotplate-2.jpg" class="absolute" style="bottom: 100px; right: 50px; width: 350px; height: 300px; "></p>
 <aside class="notes">
 <ul>
 <li><p>Two traits map to Chr 8:</p>
@@ -659,6 +664,30 @@ Frederick Boehm
 <p>We examined these two traits because they map to the same region</p>
 <p>Hot plate latency is a measure of thermal pain sensitivity</p>
 <p>Percent time in light is related to measures of anxiety</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="data-structures" class="slide level2">
+<h2>Data Structures</h2>
+<ul>
+<li><p><span class="math inline">\(261\)</span> subjects by <span class="math inline">\(8\)</span> founder lines matrix per marker</p></li>
+<li><p>Allele dosages for 8 founder lines per subject per marker</p></li>
+<li><p><span class="math inline">\(261\)</span> subjects by <span class="math inline">\(261\)</span> subjects (LOCO) kinship matrix (per chromosome)</p></li>
+<li><p><span class="math inline">\(261\)</span> subjects by <span class="math inline">\(2\)</span> traits matrix</p></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Each chromosome’s genetics data is a separate array, with one matrix per marker</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -870,13 +899,6 @@ Frederick Boehm
 </section>
 <section id="qtl2pleio-r-package" class="slide level2">
 <h2><code>qtl2pleio</code> R package</h2>
-<ul>
-<li><p>Functions for <span class="math inline">\(d\)</span>-variate, <span class="math inline">\(d\)</span>-QTL scan &amp; profile LOD plots</p></li>
-<li><p>Uses C++ for matrix calculations (via Rcpp and RcppEigen)</p></li>
-<li><p>Uses <code>gemma2</code> R implementation of GEMMA EM algorithm for multivariate random effects</p></li>
-<li><p>Unit tests, vignettes, and version control</p></li>
-<li><p>Open source development on GitHub</p></li>
-</ul>
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="figs/qtl2pleio-github-screenshot.png"></p>
@@ -884,6 +906,11 @@ Frederick Boehm
 </div>
 <aside class="notes">
 <ul>
+<li><p>Functions for <span class="math inline">\(d\)</span>-variate, <span class="math inline">\(d\)</span>-QTL scan &amp; profile LOD plots</p></li>
+<li><p>Uses C++ for matrix calculations (via Rcpp and RcppEigen)</p></li>
+<li><p>Uses <code>gemma2</code> R implementation of GEMMA EM algorithm for multivariate random effects</p></li>
+<li><p>Unit tests, vignettes, and version control</p></li>
+<li><p>Open source development on GitHub</p></li>
 <li><p>unit tests to ensure accurate calculations</p></li>
 <li><p>vignettes on analyzing a pair of traits &amp; on cluster computing for bootstrap test</p></li>
 </ul>
@@ -934,10 +961,10 @@ Frederick Boehm
 <h1>Thank you!</h1>
 
 </section>
-<section id="references" class="slide level2 smaller scrollable">
+<section id="references" class="slide level2 smaller scrollable" data-visibility="uncounted">
 <h2>References</h2>
 <div class="footer footer-default">
-<p>Frederick Boehm (frederick.boehm@gmail.com) https://fboehm.us/</p>
+<p>Frederick Boehm (frederick.boehm@gmail.com) ttps://fboehm.us/</p>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-jiang1995multiple" class="csl-entry" role="doc-biblioentry">

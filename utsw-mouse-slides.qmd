@@ -1,12 +1,12 @@
 ---
-title: "Testing pleiotropy vs. separate QTL in Multiparental Populations"
+title: "Testing Pleiotropy vs. Separate QTL in Multiparental Populations"
 author: Frederick Boehm
 date: 'June 13, 2023'
 date-format: full
 bibliography: research.bib
 format:
     revealjs:
-        footer: "Frederick Boehm (frederick.boehm@gmail.com)     https://fboehm.us/"
+        footer: "Frederick Boehm (frederick.boehm@gmail.com)  https://fboehm.us/"
         progress: true
         slide-tone: true
         chalkboard: true
@@ -18,6 +18,10 @@ format:
             data-background-size: "contain"
             data-background-opacity: "0.2"
 ---
+
+
+class: inverse, middle, center
+
 
 # Quantitative Trait Locus (QTL) Mapping 
 
@@ -56,7 +60,7 @@ knitr::opts_chunk$set(#dev="svg",
 
 
 
-
+---
 
 ## Motivation
 
@@ -150,14 +154,20 @@ text(38-25,95/2,expression(F[2]),cex=2,adj=c(1,0.5))
 ```
 
 ::: {.notes}
+
 - Cross two inbred lines to produce a F1 population  
 - Cross F1 subjects to produce a F2 population    
 - Genotype F2 subjects at many markers  
 - Phenotype F2 subjects for the trait of interest  
 - Test each marker for association with the trait  
+
 :::
 
+
+
 ---
+
+class: inverse, middle, center
 
 # QTL Mapping in Multiparental Populations
 
@@ -347,6 +357,8 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 ---
 
+class: inverse, middle, center
+
 # Application
 
 ---
@@ -359,7 +371,7 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 ![](figs/lightdarkbox.jpg){.absolute bottom=100 left=50 width="350" height="300"}
 
-![](figs/hotplate.png){.absolute bottom=100 right=50 width="350" height="300"}
+![](figs/hotplate-2.jpg){.absolute bottom=100 right=50 width="350" height="300"}
 
 
 
@@ -388,6 +400,23 @@ Percent time in light is related to measures of anxiety
 
 :::
 
+---
+
+## Data Structures
+
+- $261$ subjects by $8$ founder lines matrix per marker 
+- Allele dosages for 8 founder lines per subject per marker  
+ 
+- $261$ subjects by $261$ subjects (LOCO) kinship matrix (per chromosome)
+
+- $261$ subjects by $2$ traits matrix
+
+
+::: {.notes}
+
+- Each chromosome's genetics data is a separate array, with one matrix per marker
+
+:::
 
 ---
 
@@ -563,6 +592,15 @@ class: inverse, middle, center
 
 ## `qtl2pleio` R package
 
+
+```{r}
+include_graphics("figs/qtl2pleio-github-screenshot.png")
+```
+
+
+
+::: {.notes}
+
 - Functions for $d$-variate, $d$-QTL scan & profile LOD plots  
 
 - Uses C++ for matrix calculations (via Rcpp and RcppEigen)  
@@ -572,14 +610,6 @@ class: inverse, middle, center
 - Unit tests, vignettes, and version control  
 
 - Open source development on GitHub  
-
-```{r}
-include_graphics("figs/qtl2pleio-github-screenshot.png")
-```
-
-
-
-::: {.notes}
 
 - unit tests to ensure accurate calculations
 
@@ -616,7 +646,7 @@ class: inverse, middle, center
 
 ---
 
-## References
+## References {visibility="uncounted"}
 
 
 
