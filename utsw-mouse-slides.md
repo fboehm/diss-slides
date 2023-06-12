@@ -14,16 +14,13 @@ format:
     revealjs:
         theme: "white"
         footer: "Frederick Boehm (frederick.boehm@gmail.com)  https://fboehm.us/"
+        logo: "figs/vitruvian-mouse-eleni.png"
         progress: true
         slide-tone: true
         chalkboard: true
         auto-stretch: false
         transition: "slide"
         slide-number: "c/t"
-        title-slide-attributes:
-            data-background-image: "figs/vitruvian-mouse-eleni.png"
-            data-background-size: "contain"
-            data-background-opacity: "0.2"
 ---
 
 
@@ -41,6 +38,13 @@ format:
 }
 .inverse h1 {
    color: white;
+}
+
+.reveal .slide-logo {
+  height: 150px !important;
+  width: 150px!important;
+  max-width: unset !important;
+  max-height: unset !important;
 }
 </style>
 :::
@@ -199,7 +203,7 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 ---
 
-## @jiang1995multiple test
+## @jiang1995multiple test 
 
 
 - Perform a two-dimensional two-QTL scan     
@@ -210,7 +214,7 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](utsw-mouse-slides_files/figure-revealjs/grid-1.png){width=960}
+![](utsw-mouse-slides_files/figure-revealjs/grid-1.png){width=384}
 :::
 :::
 
@@ -271,7 +275,7 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](utsw-mouse-slides_files/figure-revealjs/grid_again-1.png){width=960}
+![](utsw-mouse-slides_files/figure-revealjs/grid_again-1.png){width=384}
 :::
 :::
 
@@ -627,7 +631,7 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 ---
 
 
-# Thank you!
+## Thank you!
 
 
 

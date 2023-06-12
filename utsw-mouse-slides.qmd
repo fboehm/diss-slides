@@ -35,6 +35,13 @@ format:
 .inverse h1 {
    color: white;
 }
+
+.reveal .slide-logo {
+  height: 150px !important;
+  width: 150px!important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
 ```
 
 
@@ -276,7 +283,7 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 
 ---
 
-## @jiang1995multiple test
+## @jiang1995multiple test 
 
 
 - Perform a two-dimensional two-QTL scan     
@@ -285,9 +292,11 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
     
  
 ```{r, grid}
+#| fig.height=4, fig.width=4
+
 # Create an empty plot with the desired range
 limits <- c(0.5, 5.5)
-plot(x = 1:5, y = 1:5, type = "n", xlab = "Trait 1", ylab = "Trait 2", xlim = limits, ylim = limits)
+plot(x = 1:5, y = 1:5, type = "n", xlab = "Genomic Position (Trait 1)", ylab = "Genomic Position (Trait 2)", xlim = limits, ylim = limits)
 
 # Define a vector of colors
 colors <- rep("red", 25)
@@ -351,6 +360,7 @@ Two challenges occur at the point of relating phenotypes to genotypes
 - $vec(Y) = Xvec(B) + vec(G) + vec(E)$     
     
 ```{r, grid_again}
+#| fig.height=4, fig.width=4
 <<grid>>
 ```
 
@@ -673,7 +683,7 @@ include_graphics("figs/qtl2pleio-pkgdown-site-screenshot.png")
 ---
 
 
-# Thank you!
+## Thank you!
 
 
 
