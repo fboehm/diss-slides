@@ -357,14 +357,33 @@ Frederick Boehm
 </div>
 
   <p class="date">Tuesday, June 13, 2023</p>
-</section>
-<section class="slide level2">
-
-<p>class: inverse, middle, center</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Overview</h2>
+<ul>
+<li><a href="#/quantitative-trait-locus-qtl-mapping" id="/toc-quantitative-trait-locus-qtl-mapping">Quantitative Trait Locus (QTL) Mapping</a></li>
+<li><a href="#/qtl-mapping-in-multiparental-populations" id="/toc-qtl-mapping-in-multiparental-populations">QTL Mapping in Multiparental Populations</a></li>
+<li><a href="#/a-new-pleiotropy-test" id="/toc-a-new-pleiotropy-test">A New Pleiotropy Test</a></li>
+<li><a href="#/chesler-laboratory-data-application" id="/toc-chesler-laboratory-data-application">Chesler Laboratory Data Application</a></li>
+<li><a href="#/simulation-studies" id="/toc-simulation-studies">Simulation Studies</a></li>
+<li><a href="#/qtl2pleio-r-package" id="/toc-qtl2pleio-r-package"><code>qtl2pleio</code> R package</a></li>
+<li><a href="#/thank-you" id="/toc-thank-you">Thank you!</a></li>
+</ul>
+</nav>
 </section>
 <section>
-<section id="quantitative-trait-locus-qtl-mapping" class="title-slide slide level1 center">
+<section id="quantitative-trait-locus-qtl-mapping" class="title-slide slide level1 center inverse" data-background-color="black">
 <h1>Quantitative Trait Locus (QTL) Mapping</h1>
+<div class="cell">
+<style type="text/css">
+.center h1 {
+  text-align: center;
+}
+.inverse h1 {
+   color: white;
+}
+</style>
+</div>
 <div class="cell">
 <style type="text/css">
 .soln{color:red;font-style:italic}.red{color:red}.small{font-size:16px}.tiny{font-size:10px}
@@ -376,6 +395,12 @@ Frederick Boehm
 <ul>
 <li>Variations in quantitative traits are due to genetic and environmental factors<br>
 </li>
+<li>Quantitative trait loci: number, locations, effects, identities<br>
+</li>
+<li>Biological insights: new drugs, improve breeding, natural selection</li>
+</ul>
+<aside class="notes">
+<ul>
 <li>Knowledge of the number, locations, effects, and identities of these factors can contribute to new biological insights
 <ul>
 <li>new drugs<br>
@@ -385,6 +410,17 @@ Frederick Boehm
 <li>better understanding of natural selection</li>
 </ul></li>
 </ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-is-qtl-mapping" class="slide level2">
 <h2>What is QTL mapping?</h2>
@@ -398,7 +434,7 @@ Frederick Boehm
 <h2>QTL mapping in two-parent crosses</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="utsw-mouse-slides_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+<p><img data-src="utsw-mouse-slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
 </div>
 </div>
 <aside class="notes">
@@ -427,10 +463,9 @@ Frederick Boehm
 </section>
 <section class="slide level2">
 
-<p>class: inverse, middle, center</p>
 </section></section>
 <section>
-<section id="qtl-mapping-in-multiparental-populations" class="title-slide slide level1 center">
+<section id="qtl-mapping-in-multiparental-populations" class="title-slide slide level1 inverse center" data-background-color="black">
 <h1>QTL Mapping in Multiparental Populations</h1>
 
 </section>
@@ -471,6 +506,7 @@ Frederick Boehm
 <li><p>Multiparental populations offer high-resolution QTL mapping</p></li>
 <li><p>New analysis tools, such as a pleiotropy test for multiparental populations, are needed</p></li>
 </ul>
+<p><img data-src="figs/mouse_on_chips.png" class="absolute" style="left: 450px; bottom: 30px; width: 300px; height: 250px; "></p>
 <aside class="notes">
 <ul>
 <li>Together, high-dimensional traits and multiparental populations can advance complex trait genetics</li>
@@ -486,6 +522,14 @@ Frederick Boehm
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="a-new-pleiotropy-test" class="title-slide slide level1 inverse center" data-background-color="black">
+<h1>A New Pleiotropy Test</h1>
+
 </section>
 <section id="benefits-of-a-new-pleiotropy-test" class="slide level2">
 <h2>Benefits of a new pleiotropy test</h2>
@@ -636,11 +680,10 @@ Frederick Boehm
 </section>
 <section class="slide level2">
 
-<p>class: inverse, middle, center</p>
 </section></section>
 <section>
-<section id="application" class="title-slide slide level1 center">
-<h1>Application</h1>
+<section id="chesler-laboratory-data-application" class="title-slide slide level1 inverse center" data-background-color="black">
+<h1>Chesler Laboratory Data Application</h1>
 
 </section>
 <section id="logan2013high-recla2014precise" class="slide level2">
@@ -649,8 +692,8 @@ Frederick Boehm
 <li><p>261 Diversity Outbred mice</p></li>
 <li><p>Measured about two dozen behavioral traits</p></li>
 </ul>
-<p><img data-src="figs/lightdarkbox.jpg" class="absolute" style="left: 50px; bottom: 100px; width: 350px; height: 300px; "></p>
-<p><img data-src="figs/hotplate-2.jpg" class="absolute" style="bottom: 100px; right: 50px; width: 350px; height: 300px; "></p>
+<p><img data-src="figs/lightdarkbox.jpg" class="absolute" style="left: 50px; bottom: 30px; width: 350px; height: 300px; "></p>
+<p><img data-src="figs/hotplate-2.jpg" class="absolute" style="bottom: 30px; right: 50px; width: 350px; height: 300px; "></p>
 <aside class="notes">
 <ul>
 <li><p>Two traits map to Chr 8:</p>
@@ -835,7 +878,6 @@ Frederick Boehm
 </section>
 <section id="parametric-bootstrap-test" class="slide level2">
 <h2>Parametric bootstrap test</h2>
-<aside class="notes">
 <ul>
 <li>Simulate data under the null hypothesis<br>
 </li>
@@ -843,6 +885,8 @@ Frederick Boehm
 </li>
 <li>Determine proportion of simulated test statistics that exceed observed test statistic</li>
 </ul>
+<aside class="notes">
+
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -854,6 +898,14 @@ Frederick Boehm
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="simulation-studies" class="title-slide slide level1 inverse center" data-background-color="black">
+<h1>Simulation Studies</h1>
+
 </section>
 <section id="assess-type-i-error-rate" class="slide level2">
 <h2>Assess Type I Error Rate</h2>
@@ -910,7 +962,15 @@ Frederick Boehm
           display:block!important;
       }</style></aside>
 </section>
-<section id="qtl2pleio-r-package" class="slide level2">
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="qtl2pleio-r-package" class="title-slide slide level1 inverse center" data-background-color="black">
+<h1><code>qtl2pleio</code> R package</h1>
+
+</section>
+<section id="qtl2pleio-r-package-1" class="slide level2">
 <h2><code>qtl2pleio</code> R package</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -939,7 +999,7 @@ Frederick Boehm
           display:block!important;
       }</style></aside>
 </section>
-<section id="qtl2pleio-r-package-1" class="slide level2">
+<section id="qtl2pleio-r-package-2" class="slide level2">
 <h2><code>qtl2pleio</code> R package</h2>
 <ul>
 <li><code>qtl2pleio</code> R package: <a href="https://fboehm.us/software/qtl2pleio/" class="uri">https://fboehm.us/software/qtl2pleio/</a></li>
@@ -967,10 +1027,9 @@ Frederick Boehm
 </section>
 <section class="slide level2">
 
-<p>class: inverse, middle, center</p>
 </section></section>
 <section>
-<section id="thank-you" class="title-slide slide level1 center">
+<section id="thank-you" class="title-slide slide level1 inverse center" data-background-color="black">
 <h1>Thank you!</h1>
 
 </section>

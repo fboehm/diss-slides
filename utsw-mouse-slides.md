@@ -14,62 +14,45 @@ format:
     revealjs:
         theme: "white"
         footer: "Frederick Boehm (frederick.boehm@gmail.com)  https://fboehm.us/"
-        logo: "figs/vitruvian-mouse-eleni.png"
         progress: true
         slide-tone: true
         chalkboard: true
         auto-stretch: false
         transition: "slide"
         slide-number: "c/t"
+        title-slide-attributes:
+            data-background-image: "figs/vitruvian-mouse-eleni.png"
+            data-background-size: "contain"
+            data-background-opacity: "0.2"
 ---
+
+
 
 
 
 
 # Quantitative Trait Locus (QTL) Mapping {.center} 
 
-```{css, echo=FALSE}
+
+::: {.cell}
+<style type="text/css">
 .center h1 {
   text-align: center;
 }
 .inverse h1 {
    color: white;
 }
-```
+</style>
+:::
+
+::: {.cell}
+<style type="text/css">
+.soln{color:red;font-style:italic}.red{color:red}.small{font-size:16px}.tiny{font-size:10px}
+</style>
+:::
 
 
 
-
-```{scss}
-.soln {
-    color: red; 
-    font-style: italic;
-}
-.red { color: red; }
-
-.small{ font-size: 16px;}
-
-.tiny{ font-size: 10px;}
-```
-
-
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-library(tidyverse)
-library(ggalt)
-library(knitr)
-ratio <- "4:3"
-fig_height <- ifelse(ratio=='4:3', 10, 7.5)
-fig_width <- 15
-curves_height <- ifelse(ratio=='4:3', 580, 540)
-curves_width <- ifelse(ratio=='4:3', 800, 1080)
-knitr::opts_chunk$set(#dev="svg", 
-                      echo=FALSE, 
-                      #results="hide",
-                      #fig.height=fig_height,
-                      #fig.width=fig_width,
-                      warning=FALSE, message=FALSE)
-```
 
 
 
@@ -103,76 +86,13 @@ knitr::opts_chunk$set(#dev="svg",
 ## QTL mapping in two-parent crosses
 
 
-```{r}
-##############################
-# The intercross
-##############################
 
-library(broman)
-library(simcross)
+::: {.cell}
+::: {.cell-output-display}
+![](utsw-mouse-slides_files/figure-revealjs/unnamed-chunk-3-1.png){width=960}
+:::
+:::
 
-color <- brocolors("crayons")[c("Cornflower", "Blush")]
-source(here::here("R/colors.R"))
-#bgcolor <- "white"
-#par(fg="white", bty="n", bg=bgcolor)
-#par(fg = "white", bty = "n" )
-par(bty="n")
-par(mar=rep(0, 4))
-
-plot(0,0,xlim=c(0,864),ylim=c(0,480),xaxt="n",yaxt="n",xlab="",ylab="",type="n")
-rect(c(300,328),c(480,480),c(310,338),c(385,385),col=color[1],border=color[1], lend=1, ljoin=1)
-rect(c(526,554),c(480,480),c(536,564),c(385,385),col=color[2],border=color[2], lend=1, ljoin=1)
-
-points(432,440,pch=4,cex=2.5,lwd=2)
-segments(432,400,432,340,lwd=2)
-segments(319,340,545,340,lwd=2)
-arrows(c(319,545),c(340,340),c(319,545),c(300,300),lwd=2,len=0.1)
-
-text(300-25,(480+385)/2,expression(P[1]),cex=2,adj=c(1,0.5))
-text(564+25,(480+385)/2,expression(P[2]),cex=2,adj=c(0,0.5))
-
-rect(300,287,310,192,col=color[1],border=color[1], lend=1, ljoin=1)
-rect(328,287,338,192,col=color[2],border=color[2], lend=1, ljoin=1)
-rect(526,287,536,192,col=color[1],border=color[1], lend=1, ljoin=1)
-rect(554,287,564,192,col=color[2],border=color[2], lend=1, ljoin=1)
-
-points(432,247,pch=4,cex=2.5,lwd=2)
-segments(432,207,432,147,lwd=2)
-segments(57,147,849,147,lwd=2)
-arrows(seq(57,849,by=88),rep(147,10),seq(57,849,by=88),rep(107,10),lwd=2,len=0.1)
-
-text(300-25,(287+192)/2,expression(F[1]),cex=2,adj=c(1,0.5))
-text(564+25,(287+192)/2,expression(F[1]),cex=2,adj=c(0,0.5))
-
-f1 <- create_parent(100,c(1,2))
-set.seed(994)
-f2 <- vector("list",10)
-for(i in 1:10) f2[[i]] <- cross(f1,f1,m=10)
-
-xloc <- 38
-mult <- 95/max(f2[[1]]$mat$locations)
-for(i in 1:10) {
-    rect(xloc,0,xloc+10,95,   col=color[1],border=color[1], lend=1, ljoin=1)
-    rect(xloc+28,0,xloc+38,95,col=color[1],border=color[1], lend=1, ljoin=1)
-
-    f2m <- f2[[i]]$mat
-    f2m$locations <- c(0, f2m$locations)
-    for(j in 2:length(f2m$locations)) {
-        if(f2m$alleles[j-1]==2) {
-            rect(xloc,f2m$locations[j]*mult,xloc+10,f2m$locations[j-1]*mult,col=color[2],border=color[2], lend=1, ljoin=1)
-        }
-    }
-    f2p <- f2[[i]]$pat
-    f2p$locations <- c(0, f2p$locations)
-    for(j in 2:length(f2p$locations)) {
-        if(f2p$alleles[j-1]==2) {
-            rect(xloc+28,f2p$locations[j]*mult,xloc+38,f2p$locations[j-1]*mult,col=color[2],border=color[2], lend=1, ljoin=1)
-        }
-    }
-    xloc <- xloc+38+50
-}
-text(38-25,95/2,expression(F[2]),cex=2,adj=c(1,0.5))
-```
 
 ::: {.notes}
 
@@ -196,10 +116,13 @@ text(38-25,95/2,expression(F[2]),cex=2,adj=c(1,0.5))
 
 ## Multiparental populations
 
-```{r mppfig, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
-source(here::here("R/hs_fig.R"))
-# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](utsw-mouse-slides_files/figure-revealjs/mppfig-1.png){width=700px}
+:::
+:::
+
 
 
 
@@ -284,18 +207,13 @@ When trying to identify an intermediate, a pleiotropy test limits the number of 
 - $vec(Y) = Xvec(B) + vec(E)$     
     
  
-```{r, grid}
-# Create an empty plot with the desired range
-limits <- c(0.5, 5.5)
-plot(x = 1:5, y = 1:5, type = "n", xlab = "Trait 1", ylab = "Trait 2", xlim = limits, ylim = limits)
 
-# Define a vector of colors
-colors <- rep("red", 25)
-green_indices <- c(1, 7, 13, 19, 25)
-colors[green_indices] <- "green"
-# Add points to represent the grid with different colors
-points(rep(1:5, 5), rep(1:5, each = 5), pch = 19, cex = 2, col = colors)
-```
+::: {.cell}
+::: {.cell-output-display}
+![](utsw-mouse-slides_files/figure-revealjs/grid-1.png){width=960}
+:::
+:::
+
 
 
 
@@ -350,9 +268,13 @@ Two challenges occur at the point of relating phenotypes to genotypes
 
 - $vec(Y) = Xvec(B) + vec(G) + vec(E)$     
     
-```{r, grid_again}
-<<grid>>
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](utsw-mouse-slides_files/figure-revealjs/grid_again-1.png){width=960}
+:::
+:::
+
 
 ::: {.notes}
 
@@ -452,9 +374,13 @@ Percent time in light is related to measures of anxiety
 ## Percent time in light
 
 
-```{r percentlight, echo = FALSE, out.width = "650px"}
-include_graphics("figs/percent-time-light-coef-lod-Chr8.svg")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/percent-time-light-coef-lod-Chr8.svg){width=650px}
+:::
+:::
+
 
 
 ::: {.notes}
@@ -471,9 +397,13 @@ include_graphics("figs/percent-time-light-coef-lod-Chr8.svg")
 ## Hot plate latency
 
 
-```{r hotplate, echo = FALSE, out.width = "650px"}
-include_graphics("figs/hot-plate-latency-coef-lod-Chr8.svg")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/hot-plate-latency-coef-lod-Chr8.svg){width=650px}
+:::
+:::
+
 
 
 
@@ -487,9 +417,13 @@ include_graphics("figs/hot-plate-latency-coef-lod-Chr8.svg")
 
 ## Correlation between traits
 
-```{r}
-include_graphics("figs/scatter-1.png")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/scatter-1.png)
+:::
+:::
+
 
 ::: {.notes}
 
@@ -520,9 +454,13 @@ include_graphics("figs/scatter-1.png")
 ## Profile LOD
 
 
-```{r profiles, out.width = "650px", echo = FALSE}
-include_graphics("figs/profile.svg", auto_pdf = FALSE)
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/profile.svg){width=650px}
+:::
+:::
+
 
 ::: {.notes}
 
@@ -585,9 +523,13 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 
 ## Assess Type I Error Rate
 
-```{r}
-include_graphics("figs/table-sims.png")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/table-sims.png)
+:::
+:::
+
 
 ::: {.notes}
 
@@ -602,9 +544,13 @@ include_graphics("figs/table-sims.png")
 
 ## Assessing Power
 
-```{r}
-include_graphics("figs/power-curves.svg")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/power-curves.svg)
+:::
+:::
+
 
 ::: {.notes}
 
@@ -627,9 +573,13 @@ include_graphics("figs/power-curves.svg")
 ## `qtl2pleio` R package
 
 
-```{r}
-include_graphics("figs/qtl2pleio-github-screenshot.png")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/qtl2pleio-github-screenshot.png)
+:::
+:::
+
 
 
 
@@ -656,9 +606,13 @@ include_graphics("figs/qtl2pleio-github-screenshot.png")
 
 - `qtl2pleio` R package: <https://fboehm.us/software/qtl2pleio/>
 
-```{r}
-include_graphics("figs/qtl2pleio-pkgdown-site-screenshot.png")
-```
+
+::: {.cell}
+::: {.cell-output-display}
+![](figs/qtl2pleio-pkgdown-site-screenshot.png)
+:::
+:::
+
 
 ::: {.notes}
 
