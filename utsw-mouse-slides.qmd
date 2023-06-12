@@ -563,6 +563,9 @@ include_graphics("figs/table-sims.png")
 
 ::: {.notes}
 
+- 2 by 2 by 2 factorial design  
+- 400 trait pairs per scenario  
+- 400 bootstrap samples per trait pair  
 
 
 :::
@@ -577,6 +580,10 @@ include_graphics("figs/power-curves.svg")
 
 ::: {.notes}
 
+- 2 by 2 by 5 factorial design  
+- 3 factors: allele effects difference, allele effects partitioning, and inter-locus distance  
+- Simulated 400 trait pairs per scenario
+- 400 bootstrap samples per trait pair
 
 
 
@@ -585,7 +592,7 @@ include_graphics("figs/power-curves.svg")
 ---
 class: inverse, middle, center
 
-# qtl2pleio R package
+# `qtl2pleio` R package
 
 
 ---
