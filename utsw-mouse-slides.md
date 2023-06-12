@@ -60,7 +60,7 @@ format:
 
 
 
----
+
 
 ## Motivation
 
@@ -110,13 +110,11 @@ format:
 
 
 
----
-
 
 # QTL Mapping in Multiparental Populations
 
 
----
+
 
 ## Multiparental populations
 
@@ -159,13 +157,12 @@ format:
 :::
 
 
----
+
 
 # A New Pleiotropy Test
 
 
 
----
 
 ## Benefits of a new pleiotropy test
 
@@ -310,12 +307,10 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 :::
 
----
 
 
 # Chesler Laboratory Data Application
 
----
 
 ## @logan2013high & @recla2014precise
 
@@ -519,11 +514,9 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 
 :::
 
----
 
 # Simulation Studies
 
----
 
 ## Assess Type I Error Rate
 
@@ -567,12 +560,10 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 
 :::
 
----
 
 # `qtl2pleio` R package
 
 
----
 
 ## `qtl2pleio` R package
 
