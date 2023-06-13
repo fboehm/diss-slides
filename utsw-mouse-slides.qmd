@@ -556,23 +556,6 @@ include_graphics("figs/scatter-1.png")
 
 ---
 
-## LOD definitions
-
-- $$LOD(\lambda_1, \lambda_2) = ll_{10}(\lambda_1, \lambda_2) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
-
-
-- $$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = \max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
-
-
-
-- $$LOD_p(\lambda) = ll_{10}(\lambda, \lambda) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
-
-
-
-
-
-
----
 
 ## Profile LOD
 
@@ -617,20 +600,6 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
     - One QTL affects "distance traveled in light"    
     
     - Second QTL affects "hot plate latency"
-
-:::
-
----
-
-## Parametric bootstrap test
-
-- Simulate data under the null hypothesis  
-- Calculate test statistic for each simulated dataset  
-- Determine proportion of simulated test statistics that exceed observed test statistic  
-
-
-::: {.notes}
-
 
 :::
 
@@ -731,6 +700,40 @@ include_graphics("figs/qtl2pleio-pkgdown-site-screenshot.png")
 
 
 ---
+
+## LOD definitions {visibility="uncounted"}
+
+- $$LOD(\lambda_1, \lambda_2) = ll_{10}(\lambda_1, \lambda_2) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
+
+
+- $$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = \max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
+
+
+
+- $$LOD_p(\lambda) = ll_{10}(\lambda, \lambda) - \max_{\lambda} ll_{10}(\lambda, \lambda)$$
+
+
+---
+
+## Parametric bootstrap test {visibility="uncounted"}
+
+- Simulate data under the null hypothesis  
+- Calculate test statistic for each simulated dataset  
+- Determine proportion of simulated test statistics that exceed observed test statistic  
+
+
+::: {.notes}
+
+
+:::
+
+
+
+
+
+---
+
+
 
 ## References {visibility="uncounted"}
 
