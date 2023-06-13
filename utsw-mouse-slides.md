@@ -637,6 +637,14 @@ The two profile LOD traces achieve the same maximum value, which is the test sta
 :::
 
 
+---
+
+## Conclusions {visibility="uncounted"}
+
+- We developed a test for pleiotropy for two traits measured in multiparent populations  
+- We characterized the test performance with simulations    
+- We applied the test to data from a behavioral genetics study to answer a biological question  
+- We implemented the test in a open source R software package 
 
 
 
