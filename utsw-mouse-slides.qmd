@@ -107,6 +107,44 @@ knitr::opts_chunk$set(#dev="svg",
 
 ---
 
+## Why use model organisms?
+
+- We could study hypertension in humans  
+- But human studies have limitations:  
+    - Cost  
+    - Inability to control subjects' life histories and environments  
+    - Confounding   
+
+---
+
+## Why use model organisms?
+
+- Shared biology with humans  
+- Shorter generation time   
+- Large numbers of progeny    
+- Controlled environments   
+- Control genetic background  
+- Valid causal inferences  
+
+---
+
+## Limitations of Model Organisms
+
+- Relevance to human biology  
+- QTL identification $\neq$ Gene identification
+
+::: {.notes}
+
+- A single QTL may contain dozens or even hundreds of genes
+
+
+:::
+
+
+
+
+---
+
 ## QTL mapping in two-parent crosses
 
 
@@ -216,6 +254,22 @@ source(here::here("R/hs_fig.R"))
 - over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
 :::
 
+
+---
+
+## Diversity Outbred Mice
+
+
+![](figs/DO-mating-design.png){.absolute bottom=30 left=200 width=700 height=550}
+
+
+::: {.notes}
+
+- 8 inbred founder lines  
+- Funnel design to incorporate DNA from all 8 founders  
+- 30+ generations of outbreeding  
+
+:::
 
 ---
 
@@ -393,7 +447,7 @@ Approximate the null distribution with the distribution of bootstrap test statis
 
 
 
-# Chesler Laboratory Data Application
+# Chesler, et al. Data Analysis  
 
 
 ## @logan2013high & @recla2014precise
@@ -438,8 +492,6 @@ Percent time in light is related to measures of anxiety
 ## Data Structures
 
 - $261$ subjects by $8$ founder lines matrix per marker  
-
-- Allele dosages for 8 founder lines per subject per marker  
  
 - $261$ subjects by $261$ subjects (LOCO) kinship matrix (per chromosome)
 

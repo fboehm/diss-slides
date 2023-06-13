@@ -364,7 +364,7 @@ Frederick Boehm
 <li><a href="#/quantitative-trait-locus-qtl-mapping" id="/toc-quantitative-trait-locus-qtl-mapping">Quantitative Trait Locus (QTL) Mapping</a></li>
 <li><a href="#/qtl-mapping-in-multiparental-populations" id="/toc-qtl-mapping-in-multiparental-populations">QTL Mapping in Multiparental Populations</a></li>
 <li><a href="#/a-new-pleiotropy-test" id="/toc-a-new-pleiotropy-test">A New Pleiotropy Test</a></li>
-<li><a href="#/chesler-laboratory-data-application" id="/toc-chesler-laboratory-data-application">Chesler Laboratory Data Application</a></li>
+<li><a href="#/chesler-et-al.-data-analysis" id="/toc-chesler-et-al.-data-analysis">Chesler, et al.&nbsp;Data Analysis</a></li>
 <li><a href="#/simulation-studies" id="/toc-simulation-studies">Simulation Studies</a></li>
 <li><a href="#/qtl2pleio-r-package" id="/toc-qtl2pleio-r-package"><code>qtl2pleio</code> R package</a></li>
 </ul>
@@ -436,6 +436,60 @@ Frederick Boehm
 <li>Consider each marker, one at a time, and test whether it affects the trait</li>
 </ul>
 </section>
+<section id="why-use-model-organisms" class="slide level2">
+<h2>Why use model organisms?</h2>
+<ul>
+<li>We could study hypertension in humans<br>
+</li>
+<li>But human studies have limitations:
+<ul>
+<li>Cost<br>
+</li>
+<li>Inability to control subjects’ life histories and environments<br>
+</li>
+<li>Confounding</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-use-model-organisms-1" class="slide level2">
+<h2>Why use model organisms?</h2>
+<ul>
+<li>Shared biology with humans<br>
+</li>
+<li>Shorter generation time<br>
+</li>
+<li>Large numbers of progeny<br>
+</li>
+<li>Controlled environments<br>
+</li>
+<li>Control genetic background<br>
+</li>
+<li>Valid causal inferences</li>
+</ul>
+</section>
+<section id="limitations-of-model-organisms" class="slide level2">
+<h2>Limitations of Model Organisms</h2>
+<ul>
+<li>Relevance to human biology<br>
+</li>
+<li>QTL identification <span class="math inline">\(\neq\)</span> Gene identification</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>A single QTL may contain dozens or even hundreds of genes</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="qtl-mapping-in-two-parent-crosses" class="slide level2">
 <h2>QTL mapping in two-parent crosses</h2>
 <div class="cell">
@@ -489,6 +543,29 @@ Frederick Boehm
 </li>
 <li>over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line<br>
 </li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="diversity-outbred-mice" class="slide level2">
+<h2>Diversity Outbred Mice</h2>
+<p><img data-src="figs/DO-mating-design.png" class="absolute" style="left: 200px; bottom: 30px; width: 700px; height: 550px; "></p>
+<aside class="notes">
+<ul>
+<li>8 inbred founder lines<br>
+</li>
+<li>Funnel design to incorporate DNA from all 8 founders<br>
+</li>
+<li>30+ generations of outbreeding</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -679,8 +756,8 @@ Frederick Boehm
       }</style></aside>
 </section></section>
 <section>
-<section id="chesler-laboratory-data-application" class="title-slide slide level1 inverse center" data-background-color="black">
-<h1>Chesler Laboratory Data Application</h1>
+<section id="chesler-et-al.-data-analysis" class="title-slide slide level1 inverse center" data-background-color="black">
+<h1>Chesler, et al.&nbsp;Data Analysis</h1>
 
 </section>
 <section id="logan2013high-recla2014precise" class="slide level2">
@@ -720,7 +797,6 @@ Frederick Boehm
 <h2>Data Structures</h2>
 <ul>
 <li><p><span class="math inline">\(261\)</span> subjects by <span class="math inline">\(8\)</span> founder lines matrix per marker</p></li>
-<li><p>Allele dosages for 8 founder lines per subject per marker</p></li>
 <li><p><span class="math inline">\(261\)</span> subjects by <span class="math inline">\(261\)</span> subjects (LOCO) kinship matrix (per chromosome)</p></li>
 <li><p><span class="math inline">\(261\)</span> subjects by <span class="math inline">\(2\)</span> traits matrix</p></li>
 </ul>
